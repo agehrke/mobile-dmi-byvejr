@@ -24,7 +24,7 @@ a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
 
 #container {
-	margin: 0 1%;
+	margin: 0 1% 200px 1%;
 }
 
 .byvejr {
@@ -33,8 +33,7 @@ a:hover, a:active { outline: 0; }
 .byvejr.active {
 	display: block;
 }
-.forecast-container {
-	text-align: center;
+.forecast-container {	
 	font-size: 200%;
 }
 .forecast {
@@ -43,18 +42,22 @@ a:hover, a:active { outline: 0; }
 .loading .forecast {
 	display:none;
 }
-.loading .forecast-container .loader {
+.loading .forecast-container .loader {	
 	display: block;
 }
 .forecast-container .loader {
 	display: none;
+	text-align: center;
 }
 
 .zipcode-selector {
-	font-size: 200%;
+	font-size: 150%;
 }
 .zipcode-selector input {
 	font-size: inherit;
+}
+.footer {
+	font-size: 120%;
 }
 
 
