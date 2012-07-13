@@ -33,9 +33,21 @@ a:hover, a:active { outline: 0; }
 .byvejr.active {
 	display: block;
 }
-
+.forecast-container {
+	text-align: center;
+	font-size: 200%;
+}
 .forecast {
 	max-width: 100%;
+}
+.loading .forecast {
+	display:none;
+}
+.loading .forecast-container .loader {
+	display: block;
+}
+.forecast-container .loader {
+	display: none;
 }
 
 .zipcode-selector {
