@@ -38,6 +38,12 @@ a:hover, a:active { outline: 0; }
 	max-width: 100%;
 }
 
+.zipcode-selector {
+	font-size: 200%;
+}
+.zipcode-selector input {
+	font-size: inherit;
+}
 
 
 
