@@ -23,8 +23,12 @@ a:focus { outline: thin dotted; }
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */
 a:hover, a:active { outline: 0; }
 
+h1 {
+	font-size: 150%;
+}
+
 #container {
-	margin: 0 1% 200px 1%;
+	margin: 0 1% 150px 1%;
 }
 
 .byvejr {
@@ -50,7 +54,7 @@ a:hover, a:active { outline: 0; }
 	text-align: center;
 }
 
-.zipcode-selector {
+header {
 	font-size: 150%;
 }
 .zipcode-selector input {
@@ -60,7 +64,18 @@ a:hover, a:active { outline: 0; }
 	font-size: 120%;
 }
 
-
+.radar-link {
+	float: right;
+}
+.radar {
+	display: none;
+}
+.radar.active {
+	display: block;
+}
+.radar img {
+	max-width: 100%;
+}
 
 
 

@@ -31,12 +31,22 @@ $(function() {
 		$('html, body').animate({scrollTop: $(".byvejr").offset().top}, 500);
 	}
 	
+	var showRadar = function() {
+		$(".radar").addClass("active").find("img").attr("src", "http://www.dmi.dk/dmi/radar-animation640.gif");
+	}
+	
 	// Check for zip code
 	if (window.location.hash) {
-		var zipCode = window.location.hash.replace("#", "");
-		$(".zipcode").val(zipCode);
-		displayForecasts(zipCode, scrollToForecasts);
+		if (window.location.hash == "#radar") {
+			showRadar();
+		} else {
+			var zipCode = window.location.hash.replace("#", "");
+			$(".zipcode").val(zipCode);
+			displayForecasts(zipCode, scrollToForecasts);
+		}
 	}
+	
+	$(".radar-link").click(function() { showRadar() });
 
 	$(".zipcode-form").submit(function() {
 		var zipCode = $(".zipcode").val();
