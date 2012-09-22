@@ -1,7 +1,12 @@
 CACHE MANIFEST
+# 2012-09-22
 index.html
 css/style.css
 js/libs/jquery-1.7.1.min.js
 js/script.js
 img/l/apple-touch-icon.png
 img/l/apple-touch-icon-precomposed.png
+
+# All other resources (e.g. sites) require the user to be online. 
+NETWORK:
+*
