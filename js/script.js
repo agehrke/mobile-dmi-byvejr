@@ -33,6 +33,7 @@ $(function() {
 	
 	var showRadar = function() {
 		$(".radar").addClass("active").find("img").attr("src", "http://www.dmi.dk/dmi/radar-animation640.gif");
+		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);
 	}
 	
 	// Check for zip code
