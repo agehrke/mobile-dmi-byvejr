@@ -9,11 +9,9 @@ body { margin: 0; font-size: 13px; line-height: 1.231; }
 
 body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
-
-
-/* =============================================================================
-   Links
-   ========================================================================== */
+.larger {
+	font-size: 120%;
+}
 
 a { color: #00e; }
 a:visited { color: #551a8b; }
@@ -60,8 +58,7 @@ header {
 .zipcode-selector input {
 	font-size: inherit;
 }
-.footer {
-	font-size: 120%;
+.footer {	
 }
 
 .radar-link {
@@ -77,11 +74,29 @@ header {
 	max-width: 100%;
 }
 
+.city-list {
+	margin: 0;
+	padding: 0;
+	font-size: 140%;
+}
 
+.city-list li {
+	display: inline-block;
+	width: 40%;
+	margin-left: 5%;
+	margin-bottom: 1em;
+}
 
+.city-list .other-cities {
+	width: 85%;
+}
 
-
-
+.city-list a {
+	display: block;
+	padding: 1em;
+	border: 1px solid #BBB;
+	text-align: center;
+}
 
 
 

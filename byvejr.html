@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
 
-  <title>DMI Byvejr - vejrudsigt på din mobil</title>
-  <meta name="description" content="Få DMI byvejr på din smartphone eller alm mobil uden brug af app. 2-døgnsudsigt og nedbørsradar for dit lokal område. Bookmark link direkte til din hjemby.">
+  <title>Byvejr - vejrudsigt på din mobil</title>
+  <meta name="description" content="Få byvejr på din smartphone eller alm mobil uden brug af app. 2-døgnsudsigt og nedbørsradar for dit lokal område. Bookmark link direkte til din hjemby.">
 
   <!-- Mobile viewport optimization h5bp.com/ad -->
   <meta name="HandheldFriendly" content="True">
@@ -34,51 +34,27 @@
 <body>
   <div id="container">
     <div id="main" role="main">
-		<header>
-			<a href="#radar" class="radar-link">Nedbørsradar</a>
-			<h1>DMI Byvejr</h1>
-			<div class="zipcode-selector">
-				<form action="" method="get" class="zipcode-form">
-					<label>
-					Postnr:
-					<input type="number" name="zipcode" size="4" class="zipcode" />
-					</label>
-					<input type="submit" value="Vis vejrudsigt" />
-				</form>
-			</div>
+		<header>			
+			<h1>Byvejr - vejrudsigt for danske byer</h1>			
 		</header>
-		<div class="byvejr">
-			<h3>2-døgnsudsigt</h3>
-			<div class="forecast-container">
-				<p class="loader">Henter vejrudsigt....</p>
-				<img src="" class="two-day-forecast forecast" alt="2-døgnsudsigt" />
-			</div>
-			<h3>3 til 9-døgnsudsigt</h3>
-			<div class="forecast-container">
-				<p class="loader">Henter vejrudsigt....</p>
-				<img src="" class="nine-day-forecast forecast" alt="3 til 9-døgnsudsigt" />
-			</div>
-		</div>
-		<div class="radar">
-			<h3>Nedbørsradar</h3>
-			<img src="" alt="Nedbørsradar" />
-		</div>
-		
-		<p class="larger">Du kan også få en liste over <a href="byvejr.html">byvejr for større danske byer</a>.</p>
+		<p>Vælg en by og få 2-døgnsudsigt og 3-9 døgnsudsigt på din mobil direkte i din browser.</p>
+		<ul class="city-list">
+			<li><a href="./#1000">Byvejr for København</a></li>
+			<li><a href="./#4000">Byvejr for Roskilde</a></li>
+			<li><a href="./#5000">Byvejr for Odense</a></li>
+			<li><a href="./#7100">Byvejr for Vejle</a></li>
+			<li><a href="./#8000">Byvejr for Aarhus</a></li>
+			<li><a href="./#9000">Byvejr for Aalborg</a></li>
+			<li><a href="./#6400">Byvejr for Sønderborg</a></li>
+			<li><a href="./#3700">Byvejr for Rønne</a></li>
+			<li class="other-cities"><a href="./">Byvejr for andre byer</a></li>
+		</ul>
     </div>
 
     <footer class="footer">
-		<p>Vejrudsigt leveret af <a href="http://www.dmi.dk/">dmi.dk</a></p>
-		<p><small>Kildekode på <a href="https://github.com/agehrke/mobile-dmi-byvejr">Github</a> af <a href="http://dk.linkedin.com/in/andreasgehrke" title="Gå til LinkedIn profil">Andreas Gehrke</a>.</small></p>
+		<p>Vejrudsigt leveret af <a href="http://www.dmi.dk/">dmi.dk</a></p>		
     </footer>
   </div> <!--! end of #container -->
-
-
-  <!-- JavaScript at the bottom for fast page loading -->  
-  <script src="js/libs/jquery-1.7.1.min.js"></script>  
-  <script src="js/script.js"></script>
-  <!-- end scripts-->
-
   
   <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
        mathiasbynens.be/notes/async-analytics-snippet -->
