@@ -39,20 +39,26 @@ $(function() {
 	// Check for zip code
 	if (window.location.hash) {
 		if (window.location.hash == "#radar") {
+			ga('send', 'event', 'Radar', 'Show', 'Direct link');
 			showRadar();
 		} else {
 			var zipCode = window.location.hash.replace("#", "");
 			$(".zipcode").val(zipCode);
 			displayForecasts(zipCode, scrollToForecasts);
+			ga('send', 'event', 'Forecast', 'Show', 'Direct link', zipCode);
 		}
 	}
 	
-	$(".radar-link").click(function() { showRadar() });
+	$(".radar-link").click(function() { 
+		ga('send', 'event', 'Radar', 'Show', 'Link');
+		showRadar();
+	});
 
 	$(".zipcode-form").submit(function() {
 		var zipCode = $(".zipcode").val();
 		displayForecasts(zipCode, scrollToForecasts);
 		window.location.hash = zipCode;
+		ga('send', 'event', 'Forecast', 'Show', 'Form submit', zipCode);
 		return false;
 	});
 });
