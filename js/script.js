@@ -36,12 +36,26 @@ $(function() {
 		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);
 	}
 	
+	var getCurrentZipCodeFromUserLocation = function(callback){
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var latLng = position.coords.latitude + "," + position.coords.longitude;
+			$.getJSON("http://geo.oiorest.dk/postnumre/"+ latLng +".json?callback=?", function(data) {
+				callback(data.fra);
+			});
+		});
+	};
+	
 	// Check for zip code
 	if (window.location.hash) {
 		if (window.location.hash == "#radar") {
 			ga('send', 'event', 'Radar', 'Show', 'Direct link');
 			showRadar();
-		} else {
+		} else if (window.location.hash == "#min-position" && "geolocation" in navigator) {
+			getCurrentZipCodeFromUserLocation(function(zipCode) {
+				displayForecasts(zipCode, scrollToForecasts);
+			});
+		}
+		else {
 			var zipCode = window.location.hash.replace("#", "");
 			$(".zipcode").val(zipCode);
 			displayForecasts(zipCode, scrollToForecasts);
