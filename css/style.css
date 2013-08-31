@@ -61,8 +61,9 @@ header {
 .footer {	
 }
 
-.radar-link {
+.top-menu  .link {
 	float: right;
+	margin-left: 1em;
 }
 .radar {
 	display: none;
@@ -98,7 +99,7 @@ header {
 	text-align: center;
 }
 
-
+.mypos-link { display: none; }
 
 /*
  * Media queries for responsive design github.com/h5bp/mobile-boilerplate/wiki/The-Style

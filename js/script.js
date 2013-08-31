@@ -32,8 +32,17 @@ $(function() {
 	}
 	
 	var showRadar = function() {
-		$(".radar").addClass("active").find("img").attr("src", "http://www.dmi.dk/dmi/radar-animation640.gif");
-		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);
+		$.getJSON("http://pipes.yahoo.com/pipes/pipe.run?_id=188864c2b984c1ad19db535c6a5b0ef0&_render=json&_callback=?", function(data) {
+			$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);
+			var items = data.value.items;
+			var img = $(".radar").addClass("active").find("img");
+			var currentIndex = 0;
+			var interval = window.setInterval(function() {
+				img.attr("src", "http://www.dmi.dk" + items[currentIndex].src);
+				currentIndex++;
+				if (currentIndex >= items.length) currentIndex = 0;
+			}, 500);
+		});
 	}
 	
 	var getCurrentZipCodeFromUserLocation = function(callback){
