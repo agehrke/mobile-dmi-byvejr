@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery imagesLoaded plugin v2.0.1
  * http://github.com/desandro/imagesloaded
  *
@@ -50,19 +50,42 @@ $(function() {
 			var latLng = position.coords.latitude + "," + position.coords.longitude;
 			$.getJSON("http://geo.oiorest.dk/postnumre/"+ latLng +".json?callback=?", function(data) {
 				callback(data.fra);
+			}, function(error) {
+				console.warn("Failed to get current position", error);
 			});
 		});
 	};
 	
-	// Check for zip code
+	// Handle click on radar link
+	$(".radar-link").click(function() { 
+		ga('send', 'event', 'Radar', 'Show', 'Link');
+		showRadar();
+	});
+
+	// Handle form submit of zip code
+	$(".zipcode-form").submit(function() {
+		var zipCode = $(".zipcode").val();
+		displayForecasts(zipCode, scrollToForecasts);
+		window.location.hash = zipCode;
+		ga('send', 'event', 'Forecast', 'Show', 'Form submit', zipCode);
+		return false;
+	});
+	
+	// Check location hash for zip code etc
 	if (window.location.hash) {
 		if (window.location.hash == "#radar") {
 			ga('send', 'event', 'Radar', 'Show', 'Direct link');
 			showRadar();
-		} else if (window.location.hash == "#min-position" && "geolocation" in navigator) {
-			getCurrentZipCodeFromUserLocation(function(zipCode) {
-				displayForecasts(zipCode, scrollToForecasts);
-			});
+		} else if (window.location.hash == "#min-position") {
+			if ("geolocation" in navigator) {
+				getCurrentZipCodeFromUserLocation(function(zipCode) {
+					$(".zipcode").val(zipCode);
+					displayForecasts(zipCode, scrollToForecasts);
+				});
+			} else {
+				$("title, h1").text("Fejl i udtræk af position").addClass("error");
+				$("<p class=\"error\">Din mobil understøtter ikke udtræk af din position</p>").insertBefore(".zipcode-selector");
+			}
 		}
 		else {
 			var zipCode = window.location.hash.replace("#", "");
@@ -71,17 +94,4 @@ $(function() {
 			ga('send', 'event', 'Forecast', 'Show', 'Direct link', zipCode);
 		}
 	}
-	
-	$(".radar-link").click(function() { 
-		ga('send', 'event', 'Radar', 'Show', 'Link');
-		showRadar();
-	});
-
-	$(".zipcode-form").submit(function() {
-		var zipCode = $(".zipcode").val();
-		displayForecasts(zipCode, scrollToForecasts);
-		window.location.hash = zipCode;
-		ga('send', 'event', 'Forecast', 'Show', 'Form submit', zipCode);
-		return false;
-	});
 });
