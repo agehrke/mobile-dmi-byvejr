@@ -22,7 +22,7 @@ a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
 
 h1 {
-	font-size: 150%;
+	font-size: 130%;
 }
 
 #container {
@@ -58,6 +58,10 @@ header {
 .zipcode-selector input {
 	font-size: inherit;
 }
+.zipcode {
+	width: 5em;
+}
+
 .footer {	
 }
 
