@@ -35,7 +35,7 @@ $(function() {
 		$(".radar").addClass("active");
 		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);		
 		$.getJSON("http://query.yahooapis.com/v1/public/yql/agehrke/nedboers-radar?format=json&callback=?", function(data) {		
-			var items = query.results.img;
+			var items = data.query.results.img;
 			if (items && items.length) {
 				var img = $(".radar img");
 				var currentIndex = 0;
