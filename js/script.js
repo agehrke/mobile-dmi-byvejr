@@ -23,7 +23,7 @@ $(function() {
 		
 		// Get city name from zip code using Geoservicen
 		$.getJSON("http://geo.oiorest.dk/postnumre/"+ zipCode +".json?callback=?", function(data) {
-			$("title, h1").text("DMI Byvejr - " + data.navn);
+			$("title, h1").text(data.navn);
 		});
 	}
 	
@@ -34,8 +34,8 @@ $(function() {
 	var showRadar = function() {
 		$(".radar").addClass("active");
 		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);		
-		$.getJSON("http://pipes.yahoo.com/pipes/pipe.run?_id=188864c2b984c1ad19db535c6a5b0ef0&_render=json&_callback=?", function(data) {		
-			var items = data.value.items;
+		$.getJSON("http://query.yahooapis.com/v1/public/yql/agehrke/nedboers-radar?format=json&callback=?", function(data) {		
+			var items = query.results.img;
 			if (items && items.length) {
 				var img = $(".radar img");
 				var currentIndex = 0;
