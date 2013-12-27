@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="da" manifest="manifest.appcache">
+<html class="no-js" lang="da">
 
 <head>
   <meta charset="utf-8">
@@ -50,14 +50,22 @@
 		</header>
 		<div class="byvejr">
 			<h3>2-døgnsudsigt</h3>
-			<div class="forecast-container">
-				<p class="loader">Henter vejrudsigt....</p>
-				<img src="" class="two-day-forecast forecast" alt="2-døgnsudsigt" />
+			<div class="forecast-container two-day-forecast">
+				<p class="loader">Henter vejrudsigt fra DMI....</p>
+        <button class="activator">Vis 2-døgnsudsigt fra DMI</button>
+				<img src="" class="forecast" alt="2-døgnsudsigt" />
 			</div>
-			<h3>3 til 9-døgnsudsigt</h3>
-			<div class="forecast-container">
-				<p class="loader">Henter vejrudsigt....</p>
-				<img src="" class="nine-day-forecast forecast" alt="3 til 9-døgnsudsigt" />
+			<h3>YR.no 2-døgnsudsigt</h3>
+      <div class="forecast-container two-day-forecast-yr">        
+        <p class="loader">Henter vejrudsigt fra YR.no....</p>        
+        <button class="activator">Vis 2-døgnsudsigt fra YR.no</button>
+        <img src="" class="forecast" alt="2-døgnsudsigt fra YR.no" />
+      </div>
+      <h3>3 til 9-døgnsudsigt</h3>
+			<div class="forecast-container nine-day-forecast">
+				<p class="loader">Henter 3 til 9-døgnsudsigt fra DMI....</p>
+        <button class="activator">Vis 3 til 9-døgnsudsigt</button>
+				<img src="" class="forecast" alt="3 til 9-døgnsudsigt" />
 			</div>
 		</div>
 		<div class="radar">
@@ -79,13 +87,6 @@
   <script src="js/libs/jquery-1.7.1.min.js"></script>  
   <script src="js/script.js"></script>
   <!-- end scripts-->
-
-  <script>
-    var _gaq=[["_setAccount","UA-910322-4"],["_trackPageview"]];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
-    s.parentNode.insertBefore(g,s)}(document,"script"));
-  </script>
 
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
