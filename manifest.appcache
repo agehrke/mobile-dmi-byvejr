@@ -1,10 +1,10 @@
 CACHE MANIFEST
-# 2014-01-03 kl 12:08
+# 2014-01-03 kl 13:49
 
 /
 byvejr.html
 css/style.css
-js/libs/jquery-1.7.1.min.js
+js/libs/jquery-2.0.3.min.js
 js/script.js
 img/l/apple-touch-icon.png
 img/l/apple-touch-icon-precomposed.png
