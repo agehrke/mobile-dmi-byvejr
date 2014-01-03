@@ -36,19 +36,19 @@ h1 {
 	display: block;
 }
 .forecast-container {	
-	font-size: 200%;
 }
-.forecast-container .forecast {
+.forecast-container .forecast, .forecast-container .scroll-info {
 	max-width: 100%;
 	display: none;
 }
-.forecast-container.loaded .forecast {
+.forecast-container.loaded .forecast, .forecast-container.loaded .scroll-info {
 	display: block;
 }
 .forecast-container.loading .loader {	
 	display: block;
 }
 .forecast-container .loader {
+	font-size: 200%;
 	display: none;
 	text-align: center;
 }
@@ -56,6 +56,16 @@ h1 {
 	padding: 1em;
 }
 .forecast-container.loaded .activator {
+	display: none;
+}
+.forecast-container.scrollable {
+	max-width: 100%;
+	overflow-x: auto;
+}
+.forecast-container.scrollable .forecast {
+	max-width: none;
+}
+.forecast-container.scrollable .scroll-info {
 	display: none;
 }
 
