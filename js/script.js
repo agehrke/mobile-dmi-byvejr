@@ -199,11 +199,13 @@ $(function() {
 	.on("click", ".activator", function(e) {
 		var name = $(e.delegateTarget).data("name");
 		model.forecasts[name].display(model.zipCode);
+		ga('send', 'event', 'Forecast', 'Show', name, model.zipCode);
 	})
 	// Toogle scrollable when clicking on forecast
 	.on("click", ".forecast", function(e) {
 		var name = $(e.delegateTarget).data("name");
 		model.forecasts[name].toggleScrollable();
+		ga('send', 'event', 'Forecast', 'Toggle zoom', name);
 	});
 	
 	
@@ -225,7 +227,7 @@ $(function() {
 		}
 		else {
 			var zipCode = window.location.hash.replace("#", "");
-			$(".zipcode").val(zipCode);			
+			$(".zipcode").val(zipCode);
 
 			model.displayForecasts(zipCode, model.scrollToForecasts);
 			ga('send', 'event', 'Forecast', 'Show', 'Direct link', zipCode);
