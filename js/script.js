@@ -7,127 +7,127 @@
 (function(c,n){var k="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";c.fn.imagesLoaded=function(l){function m(){var b=c(h),a=c(g);d&&(g.length?d.reject(e,b,a):d.resolve(e));c.isFunction(l)&&l.call(f,e,b,a)}function i(b,a){b.src===k||-1!==c.inArray(b,j)||(j.push(b),a?g.push(b):h.push(b),c(b).data("imagesLoaded",{isBroken:a,src:b.src}),o&&d.notifyWith(c(b),[a,e,c(h),c(g)]),e.length===j.length&&(setTimeout(m),e.unbind(".imagesLoaded")))}var f=this,d=c.isFunction(c.Deferred)?c.Deferred():
 0,o=c.isFunction(d.notify),e=f.find("img").add(f.filter("img")),j=[],h=[],g=[];e.length?e.bind("load.imagesLoaded error.imagesLoaded",function(b){i(b.target,"error"===b.type)}).each(function(b,a){var e=a.src,d=c(a).data("imagesLoaded");if(d&&d.src===e)i(a,d.isBroken);else if(a.complete&&a.naturalWidth!==n)i(a,0===a.naturalWidth||0===a.naturalHeight);else if(a.readyState||a.complete)a.src=k,a.src=e}):m();return d?d.promise(f):f}})(jQuery);
 
+window.AG = window.AG || {};
+
 // Yr.no wrapper
 var yrNo = (function() {
-		var zipCodes = {
-			"1000" : "Capital/Copenhagen",
-			"2670" : "Zealand/Greve/",
-			"2970" : "Capital/Hørsholm/",
-			"2630" : "Capital/Taastrup/",
-			"3000" : "Capital/Elsinore/",
-			"3250" : "Capital/Smidstrup~2613357/",
-			"3400" : "Capital/Hillerød/",			
-			"3700" : "Capital/Rønne/",
-			"4000" : "Zealand/Roskilde/",						
-			"4180" : "Zealand/Sorø/",
-			"4200" : "Zealand/Slagelse/",			
-			"4600" : "Zealand/Køge/",
-			"4700" : "Zealand/Næstved/",
-			"5000" : "South_Denmark/Odense/",
-			"5700" : "South_Denmark/Svendborg/",
-			"6000" : "South_Denmark/Kolding/",
-			"6400" : "South_Denmark/Sønderborg/",
-			"6700" : "South_Denmark/Esbjerg/",
-			"7000" : "South_Denmark/Fredericia/",
-			"7100" : "South_Denmark/Vejle/",
-			"7700" : "North_Jutland/Thisted/",
-			"7400" : "Central_Jutland/Herning/",
-			"7500" : "Central_Jutland/Holstebro/",
-			"7800" : "Central_Jutland/Skive/",
-			"7900" : "North_Jutland/Nykøbing_Mors/",						
-			"9000" : "North_Jutland/Aalborg/",
-			"9500" : "North_Jutland/Hobro/",
-			"9700" : "North_Jutland/Brønderslev/",
-			"9900" : "North_Jutland/Frederikshavn/",
-			"9800" : "North_Jutland/Hjørring/",
-			"8000" : "Central_Jutland/Aarhus/",
-			"8620" : "Central_Jutland/Kjellerup/",
-			"8700" : "Central_Jutland/Horsens/",
-			"8600" : "Central_Jutland/Silkeborg/",
-			"8722" : "Central_Jutland/Hedensted/",
-			"8800" : "Central_Jutland/Viborg/",
-			"8850" : "Central_Jutland/Bjerringbro/",
-			"8900" : "Central_Jutland/Randers/",
-		};
-
-		var findNameByZipCode = function(zipCode) {
-			if (zipCodes[zipCode]) return zipCodes[zipCode];
-			// Change last two digits to zeros
-			zipCode = zipCode.replace(/.{2}$/, "00");
-			if (zipCodes[zipCode]) return zipCodes[zipCode];
-			else return null;
-		}
-
-		var getHourlyForecastImageUrl = function(name) {
-			return "http://www.yr.no/place/Denmark/"+ name +"/meteogram.png";
-		}
-
-		return {
-			'getHourlyForecastImageUrl': function(zipCode) {
-				var name = findNameByZipCode(zipCode);
-				if (name != null) return getHourlyForecastImageUrl(name);
-				else null;
-			},
-
-			'hasForecastFor': function(zipCode) {
-				return findNameByZipCode(zipCode) != null;
-			}
-		};
-	}());
-
-function Forecast(container, imageUrlFunction) {
-	var self = this;
-	self.container = container;
-	self.imageUrlFunction = imageUrlFunction;
-
-	this.display = function(zipCode, callback) {
-		self.container.addClass("loading").removeClass("loaded");
-
-		var imageUrl = imageUrlFunction(zipCode);
-		self.container.find(".forecast").attr("src", imageUrl);
-		
-		var dfd = container.imagesLoaded();
-		dfd.done(function(images) {
-			self.container.removeClass("loading").addClass("loaded");
-			if ($.isFunction(callback)) callback();
-		});
+	var zipCodes = {
+		"1000" : "Capital/Copenhagen",
+		"2670" : "Zealand/Greve/",
+		"2970" : "Capital/Hørsholm/",
+		"2630" : "Capital/Taastrup/",
+		"3000" : "Capital/Elsinore/",
+		"3250" : "Capital/Smidstrup~2613357/",
+		"3400" : "Capital/Hillerød/",			
+		"3700" : "Capital/Rønne/",
+		"4000" : "Zealand/Roskilde/",						
+		"4180" : "Zealand/Sorø/",
+		"4200" : "Zealand/Slagelse/",			
+		"4600" : "Zealand/Køge/",
+		"4700" : "Zealand/Næstved/",
+		"5000" : "South_Denmark/Odense/",
+		"5700" : "South_Denmark/Svendborg/",
+		"6000" : "South_Denmark/Kolding/",
+		"6400" : "South_Denmark/Sønderborg/",
+		"6700" : "South_Denmark/Esbjerg/",
+		"7000" : "South_Denmark/Fredericia/",
+		"7100" : "South_Denmark/Vejle/",
+		"7700" : "North_Jutland/Thisted/",
+		"7400" : "Central_Jutland/Herning/",
+		"7500" : "Central_Jutland/Holstebro/",
+		"7800" : "Central_Jutland/Skive/",
+		"7900" : "North_Jutland/Nykøbing_Mors/",						
+		"9000" : "North_Jutland/Aalborg/",
+		"9500" : "North_Jutland/Hobro/",
+		"9700" : "North_Jutland/Brønderslev/",
+		"9900" : "North_Jutland/Frederikshavn/",
+		"9800" : "North_Jutland/Hjørring/",
+		"8000" : "Central_Jutland/Aarhus/",
+		"8620" : "Central_Jutland/Kjellerup/",
+		"8700" : "Central_Jutland/Horsens/",
+		"8600" : "Central_Jutland/Silkeborg/",
+		"8722" : "Central_Jutland/Hedensted/",
+		"8800" : "Central_Jutland/Viborg/",
+		"8850" : "Central_Jutland/Bjerringbro/",
+		"8900" : "Central_Jutland/Randers/",
 	};
 
-	this.toggleScrollable = function() {
-		self.container.toggleClass("scrollable");
+	var findNameByZipCode = function(zipCode) {
+		if (zipCodes[zipCode]) return zipCodes[zipCode];
+		// Change last two digits to zeros
+		zipCode = zipCode.replace(/.{2}$/, "00");
+		if (zipCodes[zipCode]) return zipCodes[zipCode];
+		else return null;
 	}
 
-	this.isLoaded = function() {
-		return self.container.hasClass("loaded");
+	var getHourlyForecastImageUrl = function(name) {
+		return "http://www.yr.no/place/Denmark/"+ name +"/meteogram.png";
+	}
+
+	return {
+		'getHourlyForecastImageUrl': function(zipCode) {
+			var name = findNameByZipCode(zipCode);
+			if (name != null) return getHourlyForecastImageUrl(name);
+			else null;
+		},
+
+		'hasForecastFor': function(zipCode) {
+			return findNameByZipCode(zipCode) != null;
+		}
 	};
-}
+})();
 
-function ByvejrModel() {
-	var self = this;
-	self.zipCode = "";
-	self.forecasts = {};
+(function(ns) {
+	function Forecast(container, imageUrlFunction) {
+		this.container = container;
+		this.imageUrlFunction = imageUrlFunction;	
+	}
 
-	// Create forecasts
-	self.forecasts["dmi-2"] = new Forecast($(".two-day-forecast"), function(zipCode) {
-									return "http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by="+ zipCode +"&mode=long";
-								});
-	
-	self.forecasts["dmi-9"] = new Forecast($(".nine-day-forecast"), function(zipCode) {
-									return "http://servlet.dmi.dk/byvejr/servlet/byvejr?by="+ zipCode +"&tabel=dag3_9";
-								});
+	Forecast.prototype.display = function(zipCode, callback) {
+		this.container.addClass("loading").removeClass("loaded");
 
-	self.forecasts["yr-2"] = new Forecast($(".two-day-forecast-yr"), yrNo.getHourlyForecastImageUrl);
+		var imageUrl = this.imageUrlFunction(zipCode);
+		this.container.find(".forecast").attr("src", imageUrl);
+		
+		var dfd = this.container.imagesLoaded();
+		dfd.done($.proxy(function(images) {
+			this.container.removeClass("loading").addClass("loaded");
+			if ($.isFunction(callback)) callback();
+		}, this));
+	}
+	Forecast.prototype.toggleScrollable = function() {
+		this.container.toggleClass("scrollable");
+	}
+	Forecast.prototype.isLoaded = function() {
+		return this.container.hasClass("loaded");
+	}
 
-	this.displayForecasts = function(zipCode, callback) {
-		self.zipCode = zipCode;
+	function ByvejrModel() {
+		this.zipCode = "";
+		this.forecasts = {};
+
+		// Create forecasts
+		this.forecasts["dmi-2"] = new Forecast($(".two-day-forecast"), function(zipCode) {
+										return "http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by="+ zipCode +"&mode=long";
+									});
+		
+		this.forecasts["dmi-9"] = new Forecast($(".nine-day-forecast"), function(zipCode) {
+										return "http://servlet.dmi.dk/byvejr/servlet/byvejr?by="+ zipCode +"&tabel=dag3_9";
+									});
+
+		this.forecasts["yr-2"] = new Forecast($(".two-day-forecast-yr"), yrNo.getHourlyForecastImageUrl);	
+	}
+
+	ByvejrModel.prototype.displayForecasts = function(zipCode, callback) {
+		this.zipCode = zipCode;
 
 		$(".byvejr").addClass("active");
 
 		// Display DMI 2-day forecast
-		self.forecasts["dmi-2"].display(zipCode, callback);
+		this.forecasts["dmi-2"].display(zipCode, callback);
 		
 		// Reload previously loaded forecasts
-		$.each(self.forecasts, function(i, forecast) {
+		$.each(this.forecasts, function(i, forecast) {
 			if (forecast.isLoaded()) forecast.display(zipCode);
 		});
 
@@ -135,9 +135,9 @@ function ByvejrModel() {
 		$.getJSON("http://geo.oiorest.dk/postnumre/"+ zipCode +".json?callback=?", function(data) {
 			$("title, h1").text(data.navn);
 		});
-	};
+	}
 
-	this.getCurrentZipCodeFromUserLocation = function(callback){
+	ByvejrModel.prototype.getCurrentZipCodeFromUserLocation = function(callback){
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var latLng = position.coords.latitude + "," + position.coords.longitude;
 			$.getJSON("http://geo.oiorest.dk/postnumre/"+ latLng +".json?callback=?", function(data) {
@@ -146,9 +146,9 @@ function ByvejrModel() {
 				console.warn("Failed to get current position", error);
 			});
 		});
-	};
+	}
 
-	this.showRadar = function() {
+	ByvejrModel.prototype.showRadar = function() {
 		$(".radar").addClass("active");
 		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);		
 		$.getJSON("http://query.yahooapis.com/v1/public/yql/agehrke/nedboers-radar2?format=json&callback=?", function(data) {		
@@ -166,16 +166,20 @@ function ByvejrModel() {
 				alert("Kunne ikke hente radar-billeder fra DMI. Prøv igen senere.");
 			}
 		});
-	};
+	}
 
-	this.scrollToForecasts = function() {
+	ByvejrModel.prototype.scrollToForecasts = function() {
 		$('html, body').animate({scrollTop: $(".byvejr").offset().top}, 500);
-	};	
-};
+	}
+
+	// Export to namespace
+	ns.ByvejrModel = ByvejrModel;
+	ns.Forecast = Forecast;
+})(window.AG);
 
 // DOM ready
 $(function() {
-	var model = new ByvejrModel();
+	var model = new AG.ByvejrModel();
 
 	// Handle click on radar link
 	$(".radar-link").click(function() { 
