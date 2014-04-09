@@ -96,6 +96,27 @@ header {
 	max-width: 100%;
 }
 
+.radar-img-container {
+	max-width: 640px;
+	position: relative;
+}
+
+.radar-img-container .ended-container {
+	display: none;
+	position: absolute;
+	top: 40%;
+	width: 100%;
+	text-align: center;	
+}
+.radar-img-container .restart {
+	font-size: 120%;
+	padding: 0.5em;
+}
+
+.radar-img-container.ended .ended-container {
+	display: block;
+}
+
 .city-list {
 	margin: 0;
 	padding: 0;

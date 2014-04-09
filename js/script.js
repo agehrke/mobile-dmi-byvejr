@@ -102,6 +102,51 @@ var yrNo = (function() {
 		return this.container.hasClass("loaded");
 	}
 
+	function Radar(container, img) {
+		this.container = container;
+		this.img = img;
+		this.images = null;
+		this.interval = null;
+		this.currentImageIndex = 0;
+	}
+
+	Radar.prototype.load = function(callback) {
+		this.container.removeClass("ended");
+		$.getJSON("http://query.yahooapis.com/v1/public/yql/agehrke/nedboers-radar2?format=json&callback=?", $.proxy(function(data) {		
+			var items = data.query.results.json;
+			if (items && items.length) {
+				this.images = items;
+				callback();
+			}			
+			else {
+				// No data
+				callback({error: true, msg: "Kunne ikke hente radar-billeder fra DMI. Prøv igen senere."});
+			}
+		}, this));
+	}
+
+	Radar.prototype.start = function() {		
+		if (!this.images) return;
+
+		this.container.removeClass("ended");
+		this.interval = window.setInterval($.proxy(function() {
+			this.img.attr("src", "http://www.dmi.dk" + this.images[this.currentImageIndex].src);
+			this.currentImageIndex++;
+			if (this.currentImageIndex >= this.images.length) {						
+				this.currentImageIndex = 0;				
+				this.container.addClass("ended");
+				this.stop();
+			}
+		}, this), 400);
+	}
+	
+	Radar.prototype.stop = function() {
+		if (!this.interval) return;
+
+		window.clearInterval(this.interval);
+		this.interval = null;
+	}
+
 	function ByvejrModel() {
 		this.zipCode = "";
 		this.forecasts = {};
@@ -115,7 +160,9 @@ var yrNo = (function() {
 										return "http://servlet.dmi.dk/byvejr/servlet/byvejr?by="+ zipCode +"&tabel=dag3_9";
 									});
 
-		this.forecasts["yr-2"] = new Forecast($(".two-day-forecast-yr"), yrNo.getHourlyForecastImageUrl);	
+		this.forecasts["yr-2"] = new Forecast($(".two-day-forecast-yr"), yrNo.getHourlyForecastImageUrl);
+
+		this.radar = new Radar($(".radar-img-container"), $(".radar-img-container img"));
 	}
 
 	ByvejrModel.prototype.displayForecasts = function(zipCode, callback) {
@@ -149,23 +196,15 @@ var yrNo = (function() {
 	}
 
 	ByvejrModel.prototype.showRadar = function() {
-		$(".radar").addClass("active");
-		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);		
-		$.getJSON("http://query.yahooapis.com/v1/public/yql/agehrke/nedboers-radar2?format=json&callback=?", function(data) {		
-			var items = data.query.results.json;
-			if (items && items.length) {
-				var img = $(".radar img");
-				var currentIndex = 0;
-				var interval = window.setInterval(function() {
-					img.attr("src", "http://www.dmi.dk" + items[currentIndex].src);
-					currentIndex++;
-					if (currentIndex >= items.length) currentIndex = 0;
-				}, 600);
+		$(".radar").addClass("active", "loading");
+		$('html, body').animate({scrollTop: $(".radar").offset().top}, 500);
+		this.radar.load($.proxy(function(error) {
+			if (error) {
+				alert(error.msg);
 			} else {
-				// No data
-				alert("Kunne ikke hente radar-billeder fra DMI. Prøv igen senere.");
+				this.radar.start();
 			}
-		});
+		}, this));
 	}
 
 	ByvejrModel.prototype.scrollToForecasts = function() {
@@ -185,6 +224,10 @@ $(function() {
 	$(".radar-link").click(function() { 
 		ga('send', 'event', 'Radar', 'Show', 'Link');
 		model.showRadar();
+	});
+
+	$(".radar .restart").click(function() {
+		model.radar.start();
 	});
 
 	// Handle form submit of zip code

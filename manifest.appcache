@@ -1,13 +1,14 @@
 CACHE MANIFEST
-# 2014-01-03 kl 14:05
+# 2014-04-09 kl 16:27
 
-/
+./
 byvejr.html
 css/style.css
 js/libs/jquery-2.0.3.min.js
 js/script.js
 img/l/apple-touch-icon.png
 img/l/apple-touch-icon-precomposed.png
+img/loading.gif
 
 # All other resources (e.g. sites) require the user to be online. 
 NETWORK:
