@@ -114,6 +114,8 @@ var yrNo = (function() {
 		this.container.removeClass("ended");
 		$.getJSON("http://query.yahooapis.com/v1/public/yql/agehrke/nedboers-radar2?format=json&callback=?", $.proxy(function(data) {		
 			var items = data.query.results.json;
+		$.getJSON("http://agehrkepipes.azure-mobile.net/api/Weather/Radar", $.proxy(function(data) {		
+			var items = data;
 			if (items && items.length) {
 				this.images = items;
 				callback();
