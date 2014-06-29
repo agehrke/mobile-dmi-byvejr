@@ -1,14 +1,14 @@
 CACHE MANIFEST
-# 2014-06-02
+# 2014-06-29
 
 ./
 byvejr.html
 css/style.css
+css/fonts/iconvault_forecastfont.woff
+css/fonts/iconvault_forecastfont.ttf
 js/libs/jquery-2.0.3.min.js
 js/script.js
-img/l/apple-touch-icon.png
-img/l/apple-touch-icon-precomposed.png
-img/loading.gif
+img/dmi-logo-196x196.png
 
 # All other resources (e.g. sites) require the user to be online. 
 NETWORK:
