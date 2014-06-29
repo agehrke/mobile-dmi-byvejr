@@ -14,7 +14,7 @@ body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 }
 
 a { color: #00e; }
-a:visited { color: #551a8b; }
+a:visited { color: #00e; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 
@@ -35,6 +35,7 @@ h1 {
 .byvejr.active {
 	display: block;
 }
+
 .forecast-container {	
 }
 .forecast-container .forecast, .forecast-container .scroll-info {
@@ -44,16 +45,12 @@ h1 {
 .forecast-container.loaded .forecast, .forecast-container.loaded .scroll-info {
 	display: block;
 }
-.forecast-container.loading .loader {	
-	display: block;
-}
-.forecast-container .loader {
-	font-size: 200%;
-	display: none;
-	text-align: center;
-}
 .forecast-container .activator {
-	padding: 1em;
+	text-align: center;
+	cursor: pointer;
+}
+.forecast-container .activator p {
+	margin-top: -2em;
 }
 .forecast-container.loaded .activator {
 	display: none;
@@ -67,6 +64,15 @@ h1 {
 }
 .forecast-container.scrollable .scroll-info {
 	display: none;
+}
+.forecast-container .icon-cloud {
+	font-size: 8em;
+}
+
+.forecast-container.loading .activator {
+	-webkit-animation-name: loading;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
 }
 
 header {
@@ -86,19 +92,37 @@ header {
 	float: right;
 	margin-left: 1em;
 }
-.radar {
+
+/* Radar */
+.radar .activator {
+	cursor: pointer;
+	line-height: 1;
+	text-align: center;
+}
+.radar .activator p {
+	margin: 0;
+}
+.radar.active .activator {
 	display: none;
 }
-.radar.active {
-	display: block;
+.icon-drizzle, .icon-basecloud {
+	font-size: 14em;
 }
-.radar img {
-	max-width: 100%;
+.icon-basecloud {
+	position: absolute;
 }
 
 .radar-img-container {
 	max-width: 640px;
 	position: relative;
+	display: none;
+}
+.active .radar-img-container {
+	display: block;
+}
+
+.radar-img-container img {
+	max-width: 100%;
 }
 
 .radar-img-container .ended-container {
@@ -115,6 +139,18 @@ header {
 
 .radar-img-container.ended .ended-container {
 	display: block;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+  }
 }
 
 .city-list {
@@ -143,3 +179,72 @@ header {
 
 .mypos-link { display: none; }
 
+
+/* Forecast font */
+@font-face {
+  font-family: "iconvault";
+  src: url("fonts/iconvault_forecastfont.eot");
+  src: url("fonts/iconvault_forecastfont.eot?#iefix") format("embedded-opentype"),
+       url("fonts/iconvault_forecastfont.woff") format("woff"),
+       url("fonts/iconvault_forecastfont.ttf") format("truetype"),
+       url("fonts/iconvault_forecastfont.svg#iconvault") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.icon-night:before,
+.icon-sunny:before,
+.icon-frosty:before,
+.icon-windysnow:before,
+.icon-showers:before,
+.icon-basecloud:before,
+.icon-cloud:before,
+.icon-rainy:before,
+.icon-mist:before,
+.icon-windysnowcloud:before,
+.icon-drizzle:before,
+.icon-snowy:before,
+.icon-sleet:before,
+.icon-moon:before,
+.icon-windyrain:before,
+.icon-hail:before,
+.icon-sunset:before,
+.icon-windyraincloud:before,
+.icon-sunrise:before,
+.icon-sun:before,
+.icon-thunder:before,
+.icon-windy:before {
+  font-family: "iconvault";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.icon-night:before { content: "\f100"; }
+.icon-sunny:before { content: "\f101"; }
+.icon-frosty:before { content: "\f102"; }
+.icon-windysnow:before { content: "\f103"; }
+.icon-showers:before { content: "\f104"; }
+.icon-basecloud:before { content: "\f105"; }
+.icon-cloud:before { content: "\f106"; }
+.icon-rainy:before { content: "\f107"; }
+.icon-mist:before { content: "\f108"; }
+.icon-windysnowcloud:before { content: "\f109"; }
+.icon-drizzle:before { content: "\f10a"; }
+.icon-snowy:before { content: "\f10b"; }
+.icon-sleet:before { content: "\f10c"; }
+.icon-moon:before { content: "\f10d"; }
+.icon-windyrain:before { content: "\f10e"; }
+.icon-hail:before { content: "\f10f"; }
+.icon-sunset:before { content: "\f110"; }
+.icon-windyraincloud:before { content: "\f111"; }
+.icon-sunrise:before { content: "\f112"; }
+.icon-sun:before { content: "\f113"; }
+.icon-thunder:before { content: "\f114"; }
+.icon-windy:before { content: "\f115"; }

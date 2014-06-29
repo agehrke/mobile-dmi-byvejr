@@ -1,6 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="da" manifest="manifest.appcache">
-
+<html lang="da">
 <head>
   <meta charset="utf-8">
 
@@ -8,6 +7,7 @@
   <meta name="description" content="Få DMI byvejr på din smartphone eller mobil uden brug af app. 2-døgnsudsigt og nedbørsradar for dit lokal område. Bookmark link til byvejr direkte til din by.">
 
   <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="cleartype" content="on">
 
@@ -29,7 +29,6 @@
     <div id="main" role="main">
 		<header>
 			<nav class="top-menu">
-				<a href="#radar" class="radar-link link">Nedbørsradar</a>
 				<a href="#min-position" class="mypos-link link">Min position</a>	
 			</nav>			
 			<h1>DMI Byvejr</h1>
@@ -46,37 +45,47 @@
 		<div class="byvejr">
 			<h3>2-døgnsudsigt</h3>
 			<div class="forecast-container two-day-forecast" data-name="dmi-2">
-				<p class="loader">Henter vejrudsigt fra DMI....</p>
-        <button class="activator">Vis 2-døgnsudsigt fra DMI</button>
+        <div class="activator">
+          <i class="icon-cloud"></i>
+          <p>Vis 2-døgnsudsigt fra DMI</p>
+        </div>
 				<img src="" class="forecast" alt="2-døgnsudsigt" />
         <p class="scroll-info"><small>Klik på billedet for at zoome</small></p>
 			</div>
 			<h3>YR.no 2-døgnsudsigt</h3>
-      <div class="forecast-container two-day-forecast-yr" data-name="yr-2">        
-        <p class="loader">Henter vejrudsigt fra YR.no....</p>        
-        <button class="activator">Vis 2-døgnsudsigt fra YR.no</button>
+      <div class="forecast-container two-day-forecast-yr" data-name="yr-2">  
+        <div class="activator">
+          <i class="icon-cloud"></i>
+          <p>Vis 2-døgnsudsigt fra YR.no</p>
+        </div>   
         <img src="" class="forecast" alt="2-døgnsudsigt fra YR.no" />
         <p class="scroll-info"><small>Klik på billedet for at zoome</small></p>
       </div>
       <h3>3 til 9-døgnsudsigt</h3>
 			<div class="forecast-container nine-day-forecast" data-name="dmi-9">
-				<p class="loader">Henter 3 til 9-døgnsudsigt fra DMI....</p>
-        <button class="activator">Vis 3 til 9-døgnsudsigt</button>
+        <div class="activator">
+          <i class="icon-cloud"></i>
+          <p>Vis 3 til 9-døgnsudsigt fra DMI</p>
+        </div>
 				<img src="" class="forecast" alt="3 til 9-døgnsudsigt" />
         <p class="scroll-info"><small>Klik på billedet for at zoome</small></p>
 			</div>
 		</div>
-		<div class="radar">
-			<h3>Nedbørsradar</h3>
-      <div class="radar-img-container">
-        <img src="img/loading.gif" alt="Nedbørsradar" />
-        <div class="ended-container">
-          <button class="restart">Klik for at genstarte</button>
+    <h3>Nedbørsradar</h3>
+      <div class="radar">
+        <div class="activator">
+          <i class="icon-basecloud"></i>
+          <i class="icon-drizzle"></i>
+          <p>Vis nedbørsradar fra DMI</p>
+        </div>
+        <div class="radar-img-container">
+          <img src="" class="radar-img" alt="Nedbørsradar" />
+          <div class="ended-container">
+            <button class="restart">Klik for at genstarte</button>
+          </div>
         </div>
       </div>
-		</div>
-		
-		<p class="larger">Du kan også få en liste over <a href="byvejr.html">byvejr for større danske byer</a>.</p>
+		<p>&nbsp;</p>
     </div>
 
     <footer class="footer">

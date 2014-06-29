@@ -112,8 +112,6 @@ var yrNo = (function() {
 
 	Radar.prototype.load = function(callback) {
 		this.container.removeClass("ended");
-		$.getJSON("http://query.yahooapis.com/v1/public/yql/agehrke/nedboers-radar2?format=json&callback=?", $.proxy(function(data) {		
-			var items = data.query.results.json;
 		$.getJSON("http://agehrkepipes.azure-mobile.net/api/Weather/Radar", $.proxy(function(data) {		
 			var items = data;
 			if (items && items.length) {
@@ -223,7 +221,7 @@ $(function() {
 	var model = new AG.ByvejrModel();
 
 	// Handle click on radar link
-	$(".radar-link").click(function() { 
+	$(".radar .activator").click(function() { 
 		ga('send', 'event', 'Radar', 'Show', 'Link');
 		model.showRadar();
 	});
