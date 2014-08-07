@@ -73,6 +73,18 @@ h1 {
 	-webkit-animation-name: loading;
 	-webkit-animation-duration: 2s;
 	-webkit-animation-iteration-count: infinite;
+
+	-moz-animation-name: loading;
+	-moz-animation-duration: 2s;
+	-moz-animation-iteration-count: infinite;
+
+	-ms-animation-name: loading;
+	-ms-animation-duration: 2s;
+	-ms-animation-iteration-count: infinite;
+
+	animation-name: loading;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
 }
 
 header {
@@ -143,13 +155,49 @@ header {
 
 @-webkit-keyframes loading {
   0% {
-    -webkit-transform: rotateY(0deg);
+    -webkit-transform: 	rotateY(0deg);
   }
   50% {
-    -webkit-transform: rotateY(180deg);
+    -webkit-transform:	rotateY(180deg);
   }
   100% {
-    -webkit-transform: rotateY(360deg);
+    -webkit-transform: 	rotateY(360deg);
+  }
+}
+
+@-moz-keyframes loading {
+  0% {
+    -moz-transform: 	rotateY(0deg);
+  }
+  50% {
+    -moz-transform:		rotateY(180deg);
+  }
+  100% {
+    -moz-transform: 	rotateY(360deg);
+  }
+}
+
+@-ms-keyframes loading {
+  0% {
+    -ms-transform: 		rotateY(0deg);
+  }
+  50% {
+    -ms-transform: 		rotateY(180deg);
+  }
+  100% {
+    -ms-transform: 		rotateY(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: 			rotateY(0deg);
+  }
+  50% {
+    transform: 			rotateY(180deg);
+  }
+  100% {
+    transform: 			rotateY(360deg);
   }
 }
 
