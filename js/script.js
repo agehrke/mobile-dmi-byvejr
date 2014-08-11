@@ -218,6 +218,11 @@ var yrNo = (function() {
 
 // DOM ready
 $(function() {
+	// Redirect to by.vejr.info
+	if (window.location.host == "agehrke.github.io") {
+		window.location.replace("http://by.vejr.info/" + window.location.hash);
+	}
+
 	var model = new AG.ByvejrModel();
 
 	// Handle click on radar link
