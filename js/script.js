@@ -220,7 +220,7 @@ var yrNo = (function() {
 $(function() {
 	// Redirect to by.vejr.info
 	if (window.location.host == "agehrke.github.io") {
-		window.location.replace("http://by.vejr.info/" + window.location.hash);
+		window.location.replace("http://by.vejr.info/redirected.html");
 	}
 
 	var model = new AG.ByvejrModel();
