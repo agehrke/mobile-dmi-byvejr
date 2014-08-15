@@ -1,7 +1,8 @@
 CACHE MANIFEST
-# 2014-08-11 kl 16:53
+# 2014-08-15
 
-./
+CACHE:
+index.html
 byvejr.html
 css/style.css
 css/fonts/iconvault_forecastfont.woff
