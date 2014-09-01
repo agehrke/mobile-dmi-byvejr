@@ -1,15 +1,14 @@
 CACHE MANIFEST
-# 2014-08-15 kl 15:49
+# 2014-09-01 kl 18:37
 
 CACHE:
-index.html
 byvejr.html
 css/style.css
 css/fonts/iconvault_forecastfont.woff
 css/fonts/iconvault_forecastfont.ttf
 js/libs/jquery-2.0.3.min.js
 js/script.js
-img/dmi-logo-196x196.png
+img/dmi.png
 
 # All other resources (e.g. sites) require the user to be online. 
 NETWORK:
