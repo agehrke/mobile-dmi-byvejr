@@ -97,7 +97,8 @@ header {
 	width: 5em;
 }
 
-.footer {	
+.footer {
+	margin-top: 2em;	
 }
 
 .top-menu  .link {
@@ -227,6 +228,11 @@ header {
 
 .mypos-link { display: none; }
 
+.redirect-note {
+	padding: 1em;
+	background-color: #E9D66B;
+	line-height: 1.5;
+}
 
 /* Forecast font */
 @font-face {
