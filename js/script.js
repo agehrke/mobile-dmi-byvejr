@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery imagesLoaded plugin v2.0.1
  * http://github.com/desandro/imagesloaded
  *
@@ -18,11 +18,11 @@ var yrNo = (function() {
 		"2630" : "Capital/Taastrup/",
 		"3000" : "Capital/Elsinore/",
 		"3250" : "Capital/Smidstrup~2613357/",
-		"3400" : "Capital/Hillerød/",			
+		"3400" : "Capital/Hillerød/",
 		"3700" : "Capital/Rønne/",
-		"4000" : "Zealand/Roskilde/",						
+		"4000" : "Zealand/Roskilde/",
 		"4180" : "Zealand/Sorø/",
-		"4200" : "Zealand/Slagelse/",			
+		"4200" : "Zealand/Slagelse/",
 		"4600" : "Zealand/Køge/",
 		"4700" : "Zealand/Næstved/",
 		"5000" : "South_Denmark/Odense/",
@@ -36,7 +36,7 @@ var yrNo = (function() {
 		"7400" : "Central_Jutland/Herning/",
 		"7500" : "Central_Jutland/Holstebro/",
 		"7800" : "Central_Jutland/Skive/",
-		"7900" : "North_Jutland/Nykøbing_Mors/",						
+		"7900" : "North_Jutland/Nykøbing_Mors/",
 		"9000" : "North_Jutland/Aalborg/",
 		"9500" : "North_Jutland/Hobro/",
 		"9700" : "North_Jutland/Brønderslev/",
@@ -53,6 +53,7 @@ var yrNo = (function() {
 	};
 
 	var findNameByZipCode = function(zipCode) {
+		zipCode = zipCode + ''; // stringify
 		if (zipCodes[zipCode]) return zipCodes[zipCode];
 		// Change last two digits to zeros
 		zipCode = zipCode.replace(/.{2}$/, "00");
@@ -80,7 +81,7 @@ var yrNo = (function() {
 (function(ns) {
 	function Forecast(container, imageUrlFunction) {
 		this.container = container;
-		this.imageUrlFunction = imageUrlFunction;	
+		this.imageUrlFunction = imageUrlFunction;
 	}
 
 	Forecast.prototype.display = function(zipCode, callback) {
@@ -88,7 +89,7 @@ var yrNo = (function() {
 
 		var imageUrl = this.imageUrlFunction(zipCode);
 		this.container.find(".forecast").attr("src", imageUrl);
-		
+
 		var dfd = this.container.imagesLoaded();
 		dfd.done($.proxy(function(images) {
 			this.container.removeClass("loading").addClass("loaded");
@@ -112,12 +113,13 @@ var yrNo = (function() {
 
 	Radar.prototype.load = function(callback) {
 		this.container.removeClass("ended");
-		$.getJSON("http://agehrkepipes.azure-mobile.net/api/Weather/Radar", $.proxy(function(data) {		
+		var url = "https://cors-anywhere.herokuapp.com/www.dmi.dk/vejr/maalinger/radar-nedboer/?type=30800&tx_dmiafghanistan_afghanistan%5Baction%5D=ajaxTabbedStreamMapDataRequest&tx_dmiafghanistan_afghanistan%5Bcontroller%5D=Afghanistan&cHash=17d64301c5ef7e5f1fe1f6879b21da11&tx_dmiafghanistan_afghanistan[streamId]=3&tx_dmiafghanistan_afghanistan[numberOfImages]=18";
+		$.getJSON(url, $.proxy(function(data) {
 			var items = data;
 			if (items && items.length) {
 				this.images = items;
 				callback();
-			}			
+			}
 			else {
 				// No data
 				callback({error: true, msg: "Kunne ikke hente radar-billeder fra DMI. Prøv igen senere."});
@@ -125,21 +127,21 @@ var yrNo = (function() {
 		}, this));
 	}
 
-	Radar.prototype.start = function() {		
+	Radar.prototype.start = function() {
 		if (!this.images) return;
 
 		this.container.removeClass("ended");
 		this.interval = window.setInterval($.proxy(function() {
 			this.img.attr("src", "http://www.dmi.dk" + this.images[this.currentImageIndex].src);
 			this.currentImageIndex++;
-			if (this.currentImageIndex >= this.images.length) {						
-				this.currentImageIndex = 0;				
+			if (this.currentImageIndex >= this.images.length) {
+				this.currentImageIndex = 0;
 				this.container.addClass("ended");
 				this.stop();
 			}
 		}, this), 400);
 	}
-	
+
 	Radar.prototype.stop = function() {
 		if (!this.interval) return;
 
@@ -151,13 +153,23 @@ var yrNo = (function() {
 		this.zipCode = "";
 		this.forecasts = {};
 
-		// Create forecasts
-		this.forecasts["dmi-2"] = new Forecast($(".two-day-forecast"), function(zipCode) {
-										return "http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by="+ zipCode +"&mode=long";
-									});
+		function getDmiForecastImage(id) {
+			if (id < 9999) {
+				return 'http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by='+ id +'&mode=long';
+			} else {
+				return 'http://servlet.dmi.dk/byvejr/servlet/world_image?city=' + id + '&mode=dag1_2';
+			}
+		}
 		
-		this.forecasts["dmi-9"] = new Forecast($(".nine-day-forecast"), function(zipCode) {
-										return "http://servlet.dmi.dk/byvejr/servlet/byvejr?by="+ zipCode +"&tabel=dag3_9";
+		// Create forecasts
+		this.forecasts["dmi-2"] = new Forecast($(".two-day-forecast"), getDmiForecastImage);
+
+		this.forecasts["dmi-9"] = new Forecast($(".nine-day-forecast"), function(id) {
+										if (id < 9999) {
+											return 'http://servlet.dmi.dk/byvejr/servlet/byvejr?by='+ id +'&tabel=dag3_9';
+										} else {
+											return 'http://servlet.dmi.dk/byvejr/servlet/world_image?city=' + id + '&mode=dag3_9';
+										}
 									});
 
 		this.forecasts["yr-2"] = new Forecast($(".two-day-forecast-yr"), yrNo.getHourlyForecastImageUrl);
@@ -172,16 +184,17 @@ var yrNo = (function() {
 
 		// Display DMI 2-day forecast
 		this.forecasts["dmi-2"].display(zipCode, callback);
-		
+
 		// Reload previously loaded forecasts
 		$.each(this.forecasts, function(i, forecast) {
 			if (forecast.isLoaded()) forecast.display(zipCode);
 		});
-
-		// Get city name from zip code using Geoservicen
-		$.getJSON("http://geo.oiorest.dk/postnumre/"+ zipCode +".json?callback=?", function(data) {
-			$("title, h1").text(data.navn);
-		});
+		
+		if (zipCode < 9999) {
+			$(".two-day-forecast-yr").show();
+		} else {
+			$(".two-day-forecast-yr").hide();
+		}
 	}
 
 	ByvejrModel.prototype.getCurrentZipCodeFromUserLocation = function(callback){
@@ -193,6 +206,40 @@ var yrNo = (function() {
 				console.warn("Failed to get current position", error);
 			});
 		});
+	}
+
+	ByvejrModel.prototype.getNearestCitiesFromUserLocation = function() {
+	
+		var defer = new jQuery.Deferred();
+	    navigator.geolocation.getCurrentPosition(function(position) {
+			
+	        $.ajax({
+	            url: "https://cors-anywhere.herokuapp.com/www.dmi.dk/Data4DmiDk/getData",
+	            method: "GET",
+	            data: {
+					type: 'forecast',
+					country: 'DK',
+	                latMin: position.coords.latitude - 1,
+	                latMax: position.coords.latitude + 1,
+	                lonMin: position.coords.longitude - 1,
+	                lonMax: position.coords.longitude + 1,
+	                level: 8
+	            }
+	        })
+            .then(function(cities) {
+                cities.forEach(function(city) {
+                    city.distance = getDistanceFromLatLonInKm(position.coords.latitude, position.coords.longitude, city.latitude, city.longitude);
+                });
+				
+				cities.sort(function(a, b) {
+					return a.distance - b.distance;
+				});
+				
+				defer.resolve(cities);
+            });
+	    });
+		
+		return defer.promise();
 	}
 
 	ByvejrModel.prototype.showRadar = function() {
@@ -209,6 +256,25 @@ var yrNo = (function() {
 
 	ByvejrModel.prototype.scrollToForecasts = function() {
 		$('html, body').animate({scrollTop: $(".byvejr").offset().top}, 500);
+	}
+
+    // From: http://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-latitude-longitude-points
+	function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+	    var R = 6371; // Radius of the earth in km
+	    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+	    var dLon = deg2rad(lon2 - lon1);
+	    var a =
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+          Math.sin(dLon / 2) * Math.sin(dLon / 2)
+	    ;
+	    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	    var d = R * c; // Distance in km
+	    return d;
+	}
+
+	function deg2rad(deg) {
+	    return deg * (Math.PI / 180)
 	}
 
 	// Export to namespace
@@ -229,7 +295,7 @@ $(function() {
 	var model = new AG.ByvejrModel();
 
 	// Handle click on radar link
-	$(".radar .activator").click(function() { 
+	$(".radar .activator").click(function() {
 		ga('send', 'event', 'Radar', 'Show', 'Link');
 		model.showRadar();
 	});
@@ -242,7 +308,7 @@ $(function() {
 	$(".zipcode-form").submit(function() {
 		var zipCode = $(".zipcode").val();
 		model.displayForecasts(zipCode, model.scrollToForecasts);
-		
+
 		window.location.hash = zipCode;
 		ga('send', 'event', 'Forecast', 'Show', 'Form submit', zipCode);
 		return false;
@@ -262,23 +328,32 @@ $(function() {
 		model.forecasts[name].toggleScrollable();
 		ga('send', 'event', 'Forecast', 'Toggle zoom', name);
 	});
-	
-	
+
+	function displayFromUserLocation() {
+		if ("geolocation" in navigator) {
+			model.getNearestCitiesFromUserLocation()
+			.then(function(cities) {
+				var nearest = cities[0];
+				if (nearest) {
+					model.displayForecasts(nearest.id, model.scrollToForecasts);
+					$("title, h1").text(nearest.id < 9999 ? nearest.name : nearest.link_name);
+				} else {
+					$("<p class=\"error\">Ingen vejrudsigt nær din position</p>").insertBefore(".zipcode-selector");
+				}
+			});
+		} else {
+			$("title, h1").text("Fejl i udtræk af position").addClass("error");
+			$("<p class=\"error\">Din mobil understøtter ikke udtræk af din position</p>").insertBefore(".zipcode-selector");
+		}
+	}
+
 	// Check location hash for zip code etc
 	if (window.location.hash) {
 		if (window.location.hash == "#radar") {
 			ga('send', 'event', 'Radar', 'Show', 'Direct link');
 			model.showRadar();
 		} else if (window.location.hash == "#min-position") {
-			if ("geolocation" in navigator) {
-				model.getCurrentZipCodeFromUserLocation(function(zipCode) {
-					$(".zipcode").val(zipCode);
-					model.displayForecasts(zipCode, model.scrollToForecasts);
-				});
-			} else {
-				$("title, h1").text("Fejl i udtræk af position").addClass("error");
-				$("<p class=\"error\">Din mobil understøtter ikke udtræk af din position</p>").insertBefore(".zipcode-selector");
-			}
+			displayFromUserLocation();
 		}
 		else {
 			var zipCode = window.location.hash.replace("#", "");
@@ -287,5 +362,7 @@ $(function() {
 			model.displayForecasts(zipCode, model.scrollToForecasts);
 			ga('send', 'event', 'Forecast', 'Show', 'Direct link', zipCode);
 		}
+	} else {
+		displayFromUserLocation();
 	}
 });

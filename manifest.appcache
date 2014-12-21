@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2014-09-10 kl 18:37
+# 2014-12-21 kl 13:00
 
 CACHE:
 byvejr.html
@@ -10,6 +10,6 @@ js/libs/jquery-2.0.3.min.js
 js/script.js
 img/dmi.png
 
-# All other resources (e.g. sites) require the user to be online. 
+# All other resources (e.g. sites) require the user to be online.
 NETWORK:
 *
