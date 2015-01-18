@@ -1,0 +1,17 @@
+.pages-viewport {
+  overflow: hidden;
+}
+.pages {
+  overflow: hidden;
+  transition: -webkit-transform 200ms ease-in;
+  transition: transform 200ms ease-in;
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+}
+.page {
+  overflow: hidden;
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "yeoman-test",
+  "private": true,
+  "dependencies": {
+    "Tocca.js": "~0.1.0"
+  }
+}

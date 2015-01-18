@@ -1,0 +1,79 @@
+.forecasts {
+  display: none;
+}
+.loaded .forecasts {
+  display: block;
+}
+.loaded .help-text, .loading .help-text {
+  display: none;
+}
+
+.forecast-container {
+}
+.forecast-container .forecast, .forecast-container .scroll-info {
+  max-width: 100%;
+}
+.forecast-container.loaded .forecast, .forecast-container.loaded .scroll-info {
+  display: block;
+}
+
+.scroll-info {
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+@media (min-width: 700px) {
+  .scroll-info {
+    display: none;
+  }
+}
+
+.forecast-container .activator {
+  text-align: center;
+  cursor: pointer;
+}
+.forecast-container .activator p {
+  margin-top: -2em;
+}
+.forecast-container.loaded .activator {
+  display: none;
+}
+.forecast-container.scrollable {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.forecast-container.scrollable .forecast {
+  max-width: none;
+}
+.forecast-container.scrollable .scroll-info {
+  display: none;
+}
+
+.loading .loader {
+  display: block;
+}
+.loader {
+  text-align: center;
+  display: none;
+}
+.loader .wi {
+  font-size: 10rem;
+  margin-bottom: 2rem;
+
+  animation-name: loading;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: 			rotateY(0deg);
+  }
+  50% {
+    transform: 			rotateY(180deg);
+  }
+  100% {
+    transform: 			rotateY(360deg);
+  }
+}

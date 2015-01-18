@@ -1,0 +1,23 @@
+.city-list {
+  margin: 0;
+  padding: 0;
+  font-size: 140%;
+}
+
+.city-list li {
+  display: inline-block;
+  width: 40%;
+  margin-left: 5%;
+  margin-bottom: 1em;
+}
+
+.city-list .other-cities {
+  width: 85%;
+}
+
+.city-list a {
+  display: block;
+  padding: 1em;
+  border: 1px solid #BBB;
+  text-align: center;
+}

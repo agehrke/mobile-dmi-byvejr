@@ -1,0 +1,24 @@
+/* Navigation */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+nav li {
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+  opacity: 0.7;
+  font-size: 1.2rem
+}
+nav a {
+  display: block;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+nav a:link, nav a:visited {
+  color: #FFF;
+}
+nav .active {
+  opacity: 1;
+}

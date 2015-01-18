@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="da">
+
+<head>
+  <meta charset="utf-8">
+  <title>DMI Byvejr - vejrudsigt på din mobil</title>
+  <meta name="description" content="Få DMI byvejr på din smartphone eller mobil uden brug af app. 2-døgnsudsigt og nedbørsradar for dit lokal område. Bookmark link til byvejr direkte til din by.">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="cleartype" content="on">
+
+  <link rel="canonical" href="http://by.vejr.info/" />
+  <link rel="icon" sizes="192x192" href="images/dmi.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/dmi.png">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+
+<body>
+  <header>
+    <h1>DMI Byvejr</h1>
+    <nav>
+      <ul>
+        <li><a href="#radar">Radar</a>
+        </li>
+        <li><a href="#vejr">Vejrudsigt</a>
+        </li>
+        <li><a href="#soeg">Søg</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="pages-viewport">
+    <div class="pages">
+      <div class="page">
+        <h3>Nedbørsradar</h3>
+        <div class="radar">
+          <div class="radar-img-container">
+            <img src="" class="radar-img" alt="Nedbørsradar" />
+            <div class="ended-container">Ikke flere radarbilleder.</div>
+          </div>
+          <div class="radar-info">
+            <p>Tryk på radar for at pause eller genstarte.</p>
+          </div>
+        </div>
+      </div>
+      <div class="page byvejr">
+        <div class="loader">
+          <p>Udregner din position og henter vejrudsigt</p>
+        </div>
+        <div class="help-text">
+          <p>Vælg først hvilken by du ønsker at se vejrudsigt for.</p>
+          <button type="button" class="lookup-position btn">Find vejrudsigt ud fra min position</button>
+        </div>
+        <div class="forecasts">
+          <h3>2-døgnsudsigt</h3>
+          <div class="forecast-container two-day-forecast" data-name="dmi-2">
+            <img src="" class="forecast" alt="2-døgnsudsigt" />
+            <p class="scroll-info"><small>Klik på billedet for at zoome</small>
+            </p>
+          </div>
+          <h3>YR.no 2-døgnsudsigt</h3>
+          <div class="forecast-container two-day-forecast-yr" data-name="yr-2">
+            <img src="" class="forecast" alt="2-døgnsudsigt fra YR.no" />
+            <p class="scroll-info"><small>Klik på billedet for at zoome</small>
+            </p>
+          </div>
+          <h3>3 til 9-døgnsudsigt</h3>
+          <div class="forecast-container nine-day-forecast" data-name="dmi-9">
+            <img src="" class="forecast" alt="3 til 9-døgnsudsigt" />
+            <p class="scroll-info"><small>Klik på billedet for at zoome</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="page">
+        <h3>Søg</h3>
+        <form action="" method="get" class="search-form">
+          <div class="fu">
+            <input type="search" id="query" name="query" class="query" placeholder="Søg efter bynavn" />
+          </div>
+          <div class="btnrow">
+            <input type="submit" class="btn" value="Søg efter vejrudsigt" />
+          </div>
+          <div class="results">
+            <ul>
+            </ul>
+          </div>
+        </form>
+        <hr class="divider" />
+        <h3>Find nærmeste vejrudsigt</h3>
+        <p>Brug din nuværende position til at finde nærmeste vejrudsigt.</p>
+        <button type="button" class="lookup-position btn">Find vejrudsigt ud fra min position</button>
+      </div>
+    </div>
+    <footer class="footer">
+      <p>Vejrudsigt leveret af <a href="http://www.dmi.dk/">dmi.dk</a>.</p>
+      <p><small>Kildekode på <a href="https://github.com/agehrke/mobile-dmi-byvejr" rel="nofollow">Github</a> af <a href="http://dk.linkedin.com/in/andreasgehrke" title="Gå til LinkedIn profil" rel="nofollow">Andreas Gehrke</a>. Send gerne din feedback på <a href="mailto:public@agehrke.com">public@agehrke.com</a>.</small>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-910322-6', 'auto');
+  ga('send', 'pageview');
+
+  </script>
+
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="../bower_components/Tocca.js/Tocca.min.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/libs/xhr-promise.js"></script>
+  <script src="scripts/Swipeable.js"></script>
+  <script src="scripts/Forecast.js"></script>
+  <script src="scripts/Radar.js"></script>
+  <script src="scripts/yrno.js"></script>
+  <script src="scripts/DmiFacade.js"></script>
+  <script src="scripts/ByvejrModel.js"></script>
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+/* Search */
+.search-form input {
+  font-size: inherit;
+}
+.query {
+  border: 1px solid #ACACAC;
+  border-radius: 4px;
+  padding: 0.5em;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.2);
+}
+.btnrow {
+  margin: 1rem 0;
+}
+.search-form .results ul {
+  list-style-type: none;
+  padding: 0;
+}
+.search-form .results li {
+  margin-bottom: 0.5rem;
+}

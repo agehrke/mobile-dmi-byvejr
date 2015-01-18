@@ -1,0 +1,86 @@
+// bower:scss
+// endbower
+
+html {
+  font-size: 19px;
+}
+@media (max-width: 900px) {
+  html { font-size: 17px; }
+}
+@media (max-width: 400px) {
+  html { font-size: 15px; }
+}
+
+body {
+  margin: 0;
+  line-height: 1.25;
+  background: url(img/bg.png) repeat;
+}
+
+body, button, input, select, textarea {
+  font-family: 'Open Sans', sans-serif;
+  color: #363636;
+}
+
+.larger {
+  font-size: 1.5rem;
+}
+
+a:link, a:visited { color: #085297; }
+a:hover { color: #06e; }
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  padding: 0.3rem;
+}
+h3 {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+
+header {
+  background-color: #085297;
+  color: #FFF;
+  text-align: center;
+}
+header.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.footer {
+  margin-top: 2em;
+  padding: 0 1rem;
+}
+
+.divider {
+  margin: 3rem;
+}
+
+.btn {
+  border: 1px solid #012B53;
+  background-color: #085297;
+  font-size: inherit;
+  color: #FFF;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border-radius: 4px;
+}
+
+.redirect-note {
+  padding: 1em;
+  background-color: #E9D66B;
+  line-height: 1.5;
+}
+
+
+@import 'nav';
+@import 'swipeable';
+@import 'radar';
+@import 'forecasts';
+@import 'search';
+@import 'city-list';
