@@ -1,5 +1,4 @@
-
-.radar-img-container {
+﻿.radar-img-container {
   max-width: 640px;
   position: relative;
 
@@ -7,15 +6,41 @@
     max-width: 100%;
   }
 
-  .ended-container {
-    display: none;
+  &.ended:after, &.paused:after {
+    content: "\25B6"; // Play character
+    display: block;
     position: absolute;
-    left: 1rem;
-    bottom: 3px;
-    font-size: 12px;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 5rem;
+    opacity: 0.5;
   }
 
-  &.endend .ended-container {
+  &.paused:after {
+    content: "Pause";
+    font-size: 2rem;
+    top: 45%;
+  }
+}
+
+.radar.loading {
+
+  &:before {
+    content: "Indlæser radarbilleder";
     display: block;
+    text-align: center;
+  }
+
+  &:after {
+    content: "\231B";
+    display: block;
+    text-align: center;
+    font-size: 5rem;
+  }
+
+  .radar-img-container, .radar-info {
+    display: none;
   }
 }

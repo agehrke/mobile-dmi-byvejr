@@ -1,6 +1,7 @@
-<!doctype html>
+﻿<!doctype html>
+<!-- build:appcache unused-but-needed-for-plugin-to-work -->
 <html lang="da">
-
+<!-- endbuild -->
 <head>
   <meta charset="utf-8">
   <title>DMI Byvejr - vejrudsigt på din mobil</title>
@@ -9,39 +10,38 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="cleartype" content="on">
-
-  <link rel="canonical" href="http://by.vejr.info/" />
+  <link rel="canonical" href="http://vejr.info/" />
   <link rel="icon" sizes="192x192" href="images/dmi.png">
   <link rel="apple-touch-icon" sizes="152x152" href="images/dmi.png">
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-
+  <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
   <!-- build:css styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-
 <body>
   <header>
     <h1>DMI Byvejr</h1>
     <nav>
       <ul>
-        <li><a href="#radar">Radar</a>
+        <li>
+          <a href="#radar">Radar</a>
         </li>
-        <li><a href="#vejr">Vejrudsigt</a>
+        <li>
+          <a href="#vejr">Vejrudsigt</a>
         </li>
-        <li><a href="#soeg">Søg</a>
+        <li>
+          <a href="#soeg">Søg</a>
         </li>
       </ul>
     </nav>
   </header>
   <div class="pages-viewport">
-    <div class="pages">
+    <div class="pages" style="transform: translateX(-33.3%); -webkit-transform: translateX(-33.3%);">
       <div class="page">
         <h3>Nedbørsradar</h3>
         <div class="radar">
           <div class="radar-img-container">
-            <img src="" class="radar-img" alt="Nedbørsradar" />
-            <div class="ended-container">Ikke flere radarbilleder.</div>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="radar-img" alt="Nedbørsradar" />
           </div>
           <div class="radar-info">
             <p>Tryk på radar for at pause eller genstarte.</p>
@@ -57,23 +57,19 @@
           <button type="button" class="lookup-position btn">Find vejrudsigt ud fra min position</button>
         </div>
         <div class="forecasts">
-          <h3>2-døgnsudsigt</h3>
           <div class="forecast-container two-day-forecast" data-name="dmi-2">
-            <img src="" class="forecast" alt="2-døgnsudsigt" />
-            <p class="scroll-info"><small>Klik på billedet for at zoome</small>
-            </p>
+            <h3>2-døgnsudsigt</h3>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="forecast" alt="2-døgnsudsigt" />
           </div>
-          <h3>YR.no 2-døgnsudsigt</h3>
-          <div class="forecast-container two-day-forecast-yr" data-name="yr-2">
-            <img src="" class="forecast" alt="2-døgnsudsigt fra YR.no" />
-            <p class="scroll-info"><small>Klik på billedet for at zoome</small>
-            </p>
-          </div>
-          <h3>3 til 9-døgnsudsigt</h3>
+
           <div class="forecast-container nine-day-forecast" data-name="dmi-9">
-            <img src="" class="forecast" alt="3 til 9-døgnsudsigt" />
-            <p class="scroll-info"><small>Klik på billedet for at zoome</small>
-            </p>
+            <h3>3 til 9-døgnsudsigt</h3>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="forecast" alt="3 til 9-døgnsudsigt" />
+          </div>
+
+          <div class="forecast-container two-day-forecast-yr" data-name="yr-2">
+            <h3>YR.no 2-døgnsudsigt</h3>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="forecast" alt="2-døgnsudsigt fra YR.no" />
           </div>
         </div>
       </div>
@@ -81,14 +77,13 @@
         <h3>Søg</h3>
         <form action="" method="get" class="search-form">
           <div class="fu">
-            <input type="search" id="query" name="query" class="query" placeholder="Søg efter bynavn" />
+            <input type="search" id="query" name="query" class="query" placeholder="Søg efter bynavn eller dansk postnr" />
           </div>
           <div class="btnrow">
             <input type="submit" class="btn" value="Søg efter vejrudsigt" />
           </div>
           <div class="results">
-            <ul>
-            </ul>
+            <ul></ul>
           </div>
         </form>
         <hr class="divider" />
@@ -99,38 +94,30 @@
     </div>
     <footer class="footer">
       <p>Vejrudsigt leveret af <a href="http://www.dmi.dk/">dmi.dk</a>.</p>
-      <p><small>Kildekode på <a href="https://github.com/agehrke/mobile-dmi-byvejr" rel="nofollow">Github</a> af <a href="http://dk.linkedin.com/in/andreasgehrke" title="Gå til LinkedIn profil" rel="nofollow">Andreas Gehrke</a>. Send gerne din feedback på <a href="mailto:public@agehrke.com">public@agehrke.com</a>.</small>
+      <p>
+        <small>Kildekode på <a href="https://github.com/agehrke/mobile-dmi-byvejr" rel="nofollow">Github</a> af <a href="http://dk.linkedin.com/in/andreasgehrke" title="Gå til LinkedIn profil" rel="nofollow">Andreas Gehrke</a>. Send gerne din feedback på <a href="mailto:public@agehrke.com">public@agehrke.com</a>.</small>
       </p>
     </footer>
   </div>
-
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-910322-6', 'auto');
-  ga('send', 'pageview');
+    ga('create', 'UA-910322-6', 'auto');
+    ga('send', 'pageview');
 
   </script>
-
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->
   <script src="../bower_components/Tocca.js/Tocca.min.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
-
   <!-- build:js scripts/main.js -->
-  <script src="scripts/libs/xhr-promise.js"></script>
-  <script src="scripts/Swipeable.js"></script>
-  <script src="scripts/Forecast.js"></script>
-  <script src="scripts/Radar.js"></script>
-  <script src="scripts/yrno.js"></script>
-  <script src="scripts/DmiFacade.js"></script>
-  <script src="scripts/ByvejrModel.js"></script>
   <script src="scripts/main.js"></script>
   <!-- endbuild -->
 </body>
-
 </html>

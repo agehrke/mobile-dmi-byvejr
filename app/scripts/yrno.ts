@@ -1,20 +1,28 @@
-/* exported yrNo */
-
-var yrNo = (function() {
-  'use strict';
-
+module YrNo {
   var zipCodes = {
-    '1000': 'Capital/Copenhagen',
+    '1000': 'Capital/Copenhagen/',
+    '2000': 'Capital/Frederiksberg/',
+    '2500': 'Capital/Valby/',
+    '2600': 'Capital/Taastrup/',
     '2670': 'Zealand/Greve/',
-    '2970': 'Capital/Hørsholm/',
-    '2630': 'Capital/Taastrup/',
+    '2700': 'Capital/Brønshøj/',
+    '2800': 'Capital/Lyngby-Tårbæk_Kommune/',
+    '2900': 'Capital/Hørsholm/',
     '3000': 'Capital/Elsinore/',
+    '3100': 'Capital/Hornbæk/',
     '3250': 'Capital/Smidstrup~2613357/',
+    '3300': 'Capital/Frederiksværk/',
     '3400': 'Capital/Hillerød/',
+    '3500': 'Capital/Værløse/',
+    '3600': 'Capital/Frederikssund/',
     '3700': 'Capital/Rønne/',
     '4000': 'Zealand/Roskilde/',
+    '4100': 'Zealand/Ringsted/',
     '4180': 'Zealand/Sorø/',
     '4200': 'Zealand/Slagelse/',
+    '4300': 'Zealand/Holbæk/',
+    '4400': 'Zealand/Kalundborg',
+    '4500': 'Zealand/Nykøbing_Sjælland/',
     '4600': 'Zealand/Køge/',
     '4700': 'Zealand/Næstved/',
     '5000': 'South_Denmark/Odense/',
@@ -44,27 +52,25 @@ var yrNo = (function() {
     '8900': 'Central_Jutland/Randers/',
   };
 
-  var findNameByZipCode = function(zipCode) {
-    zipCode = zipCode + ''; // stringify
-    if (zipCodes[zipCode]) return zipCodes[zipCode];
+  function findNameByZipCode(zipCode: number | string) {
+    if (zipCodes[zipCode.toString()]) return zipCodes[zipCode.toString()];
     // Change last two digits to zeros
-    zipCode = zipCode.replace(/.{2}$/, '00');
-    if (zipCodes[zipCode]) return zipCodes[zipCode];
+    zipCode = zipCode.toString().replace(/.{2}$/, '00');
+    if (zipCodes[zipCode.toString()]) return zipCodes[zipCode.toString()];
     else return null;
-  };
+  }
 
-  var getHourlyForecastImageUrl = function(name) {
+  function getHourlyForecastImageUrlByName(name: string) {
     return 'http://www.yr.no/place/Denmark/' + name + '/meteogram.png';
-  };
+  }
 
-  return {
-    getHourlyForecastImageUrl: function(zipCode) {
-      var name = findNameByZipCode(zipCode);
-      if (name !== null) return getHourlyForecastImageUrl(name);
-      else null;
-    },
-    hasForecastFor: function(zipCode) {
-      return findNameByZipCode(zipCode) !== null;
-    }
-  };
-})();
+  export function getHourlyForecastImageUrl(zipCode: number | string) {
+    var name = findNameByZipCode(zipCode);
+    if (name !== null) return getHourlyForecastImageUrlByName(name);
+    else null;
+  }
+
+  export function hasForecastFor(zipCode: number) {
+    return findNameByZipCode(zipCode) !== null;
+  }
+}

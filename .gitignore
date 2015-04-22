@@ -4,3 +4,7 @@ dist
 .sass-cache
 bower_components
 test/bower_components
+bin
+obj
+*.suo
+*.user

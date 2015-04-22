@@ -4,11 +4,17 @@
 html {
   font-size: 19px;
 }
+
 @media (max-width: 900px) {
-  html { font-size: 17px; }
+  html {
+    font-size: 17px;
+  }
 }
+
 @media (max-width: 400px) {
-  html { font-size: 15px; }
+  html {
+    font-size: 15px;
+  }
 }
 
 body {
@@ -26,14 +32,27 @@ body, button, input, select, textarea {
   font-size: 1.5rem;
 }
 
-a:link, a:visited { color: #085297; }
-a:hover { color: #06e; }
+a:link, a:visited {
+  color: #085297;
+}
+
+a:hover {
+  color: #06e;
+}
 
 h1 {
   font-size: 1.8rem;
   margin: 0;
   padding: 0.3rem;
+
+  header & {
+    // Cut off long city names in header
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 }
+
 h3 {
   font-size: 1.2rem;
   margin: 1rem 0;
@@ -45,6 +64,7 @@ header {
   color: #FFF;
   text-align: center;
 }
+
 header.fixed {
   position: fixed;
   top: 0;
@@ -52,7 +72,7 @@ header.fixed {
 }
 
 .footer {
-  margin-top: 2em;
+  margin-top: 3rem;
   padding: 0 1rem;
 }
 
