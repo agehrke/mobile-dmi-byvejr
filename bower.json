@@ -1,7 +1,8 @@
 {
-  "name": "yeoman-test",
+  "name": "mobile-dmi-byvejr",
   "private": true,
   "dependencies": {
-    "Tocca.js": "~0.1.0"
+    "Tocca.js": "~0.1.0",
+    "es6-promise": "*"
   }
 }
