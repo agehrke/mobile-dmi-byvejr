@@ -102,6 +102,16 @@ module Byvejr {
       }
     }, false);
 
+    // Needed for IE support as IE does not send popstate event for changes in url hash
+    window.addEventListener('hashchange', function (e) {
+      var hash = window.location.hash;
+      navigation.goto(hash);
+
+      if (hash === '#radar') {
+        model.showRadar();
+      }
+    });
+
     // Check query string for "city=1223"
     var cityQueryStringMatch = window.location.search.match(/city=([0-9]+)/i);
     if (cityQueryStringMatch) {
