@@ -61,12 +61,10 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
-    <Content Include="app\byvejr.html" />
     <Content Include="app\googlede996898b309d59f.html" />
     <Content Include="app\images\dmi.png" />
     <Content Include="app\index.html" />
     <Content Include="app\redirected.html" />
-    <Content Include="app\robots.txt" />
     <Content Include="app\styles\img\bg.png" />
     <Content Include="bower_components\Tocca.js\.gitignore" />
     <Content Include="bower_components\Tocca.js\bind.polyfill.js" />
@@ -86,7 +84,6 @@
     <Content Include="gulpfile.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\manifest.appcache" />
     <Content Include="app\styles\city-list.scss" />
     <Content Include="app\styles\forecasts.scss" />
     <Content Include="app\styles\main.scss" />
@@ -103,7 +100,6 @@
     <Content Include=".editorconfig" />
     <Content Include=".jshintrc" />
     <Content Include="bower.json" />
-    <Content Include="CNAME" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
