@@ -79,6 +79,13 @@ module Byvejr {
       }, false);
     }
 
+    var forecastContainers = document.querySelectorAll<HTMLElement>('.forecast-container.lazy-load');
+    for (var i = 0; i < forecastContainers.length; i++) {
+      forecastContainers[i].addEventListener('click', function (e) {
+        (<LazyLoadedForecast> model.forecasts['pollen']).load(model.cityId);
+      }, false);
+    }
+
     // Handle form submit of search code
     document.querySelector('.search-form').addEventListener('submit', handleSearchFormSubmit);
 

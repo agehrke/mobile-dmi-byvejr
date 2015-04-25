@@ -25,6 +25,10 @@ module Byvejr {
 
       this.forecasts['yr-2'] = new Forecast(document.querySelector<HTMLImageElement>('.two-day-forecast-yr img'), YrNo.getHourlyForecastImageUrl);
 
+      this.forecasts['pollen'] = new LazyLoadedForecast(document.querySelector<HTMLImageElement>('.pollen-forecast img'), id => {
+        return this.dmiFacade.getPollenForecastImage(id);
+      });
+
       this.radar = new Dmi.Radar(this.dmiFacade, document.querySelector<HTMLImageElement>('.radar-img-container img'));
       this.byvejrElement = document.querySelector<HTMLElement>('.byvejr');
     }
@@ -40,7 +44,7 @@ module Byvejr {
 
       // Display forecasts
       for (var name in this.forecasts) {
-        this.forecasts[name].display(this.cityId.toString());
+        this.forecasts[name].display(this.cityId);
       }
 
       this.byvejrElement.classList.add('loaded');

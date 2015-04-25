@@ -60,6 +60,10 @@ module Dmi {
       }
     }
 
+    getPollenForecastImage(id: number | string) {
+      return 'http://servlet.dmi.dk/byvejr/servlet/pollen_dag1?by=' + id;
+    }
+
     normalizeCityId(id: number | string) {
       var idAsNumber: number;
       if (typeof id === 'string') {

@@ -19,6 +19,7 @@
     left: 1%;
     content: "\1f50d"; // LEFT-POINTING MAGNIFYING GLASS
     font-weight: lighter;
+    pointer-events: none; // Disable "highjacking" of click events
   }
 
   .forecast {
@@ -39,7 +40,7 @@
     }
   }
 
-  &.unavailable {
+  &.unavailable { // Yr.no forecast can be unavailable
     opacity: 0.5;
 
     &::after {
@@ -50,6 +51,31 @@
 
     h3 {
       text-decoration: line-through;
+    }
+  }
+  // A lazy loaded forecast will only be displayed after click by user
+  &.lazy-load {
+    cursor: pointer;
+
+    .forecast {
+      display: none;
+    }
+
+    &.loaded {
+      .forecast { // Show forecast image
+        display: block;
+      }
+    }
+  }
+
+  &.pollen-forecast:not(.loaded) {
+    // A clickable flower icon
+    &::after {
+      content: "\1F33B"; // Sunflower
+      font-size: 3rem;
+      position: static;
+      text-align: center;
+      display: block;
     }
   }
 }
