@@ -32,11 +32,14 @@
         <li>
           <a href="#soeg">Søg</a>
         </li>
+        <li>
+          <a href="#strandvejr">Strandvejr</a>
+        </li>
       </ul>
     </nav>
   </header>
   <div class="pages-viewport">
-    <div class="pages" style="transform: translateX(-33.3%); -webkit-transform: translateX(-33.3%);">
+    <div class="pages" style="transform: translateX(-25%); -webkit-transform: translateX(-25%);">
       <div class="page">
         <h3>Nedbørsradar</h3>
         <div class="radar">
@@ -95,6 +98,128 @@
         <h3>Find nærmeste vejrudsigt</h3>
         <p>Brug din nuværende position til at finde nærmeste vejrudsigt.</p>
         <button type="button" class="lookup-position btn">Find vejrudsigt ud fra min position</button>
+      </div>
+      <div class="page strandvejr">
+        <div class="forecast-container water-temp lazy-load" data-name="water-temp">
+          <h3>Vandtemperaturer</h3>
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="forecast" alt="Vandtemperatur" />
+        </div>
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="water-temp-isoterm" alt="Isoterm" />
+
+        <br />
+        <h3>Strandvejr</h3>
+        <select class="beach-selector">
+          <option>Vælg strand</option>
+          <option value="9032">Sandvig</option>
+          <option value="9048">Antoinette</option>
+          <option value="9011">Hornbæk</option>
+          <option value="9024">Nivå</option>
+          <option value="9046">Charlottenlund</option>
+          <option value="9041">Amager Strandpark</option>
+          <option value="9035">Solrød</option>
+          <option value="9022">Marielyst</option>
+          <option value="9002">Bandholm</option>
+          <option value="9023">Marstal/Erikshale</option>
+          <option value="9045">Assens</option>
+          <option value="9007">Flyvesandet</option>
+          <option value="9003">Bogense/Hasmark</option>
+          <option value="9019">Læsø</option>
+          <option value="9001">Dueodde</option>
+          <option value="9014">Kalundborg/Gisseløre</option>
+          <option value="9040">Sejerøbugten</option>
+          <option value="9026">Rørvig</option>
+          <option value="9049">Tisvilde</option>
+          <option value="9038">Vigen Strandpark</option>
+          <option value="9037">Ulvshale</option>
+          <option value="9027">Østersøbadet</option>
+          <option value="9047">Rødbyhavn</option>
+          <option value="9010">Hestehovedet</option>
+          <option value="9015">Karrebæksminde</option>
+          <option value="9017">Kobæk</option>
+          <option value="9020">Lohals</option>
+          <option value="9005">Faaborg/Klinten</option>
+          <option value="9034">Smørmosen</option>
+          <option value="9025">Nyborg</option>
+          <option value="9016">Kerteminde</option>
+          <option value="9004">Båring Vig</option>
+          <option value="9039">Vemmingbund</option>
+          <option value="9013">Juelsminde</option>
+          <option value="9028">Moesgaard</option>
+          <option value="9008">Grenå</option>
+          <option value="9044">Rygaard</option>
+          <option value="9043">Øster Hurup</option>
+          <option value="9030">Sæby</option>
+          <option value="9033">Skagen</option>
+          <option value="9021">Løkken</option>
+          <option value="9031">Blokhus</option>
+          <option value="9018">Vorupør</option>
+          <option value="9036">Thyborøn</option>
+          <option value="9012">Nørre Lyngvig</option>
+          <option value="9009">Henne</option>
+          <option value="9006">Fanø</option>
+          <option value="9029">Rømø</option>
+        </select>
+        <br /><br />
+
+        <div class="forecast-container beach-forecast" data-name="beach-forecast">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="forecast" alt="Strandvejr" />
+        </div>
+
+        <div class="forecast-container wave-forecast" data-name="wave-forecast">
+          <h3>Bølger, dønninger og vandtemperatur</h3>
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="forecast" alt="Bølger, dønninger og vandtemperatur" />
+        </div>
+
+        <datalist id="beaches">
+          <option data-dmi-id="9032" value="Sandvig" />
+          <option data-dmi-id="9048" value="Antoinette" />
+          <option data-dmi-id="9011" value="Hornbæk" />
+          <option data-dmi-id="9024" value="Nivå" />
+          <option data-dmi-id="9046" value="Charlottenlund" />
+          <option data-dmi-id="9041" value="Amager Strandpark" />
+          <option data-dmi-id="9035" value="Solrød" />
+          <option data-dmi-id="9022" value="Marielyst" />
+          <option data-dmi-id="9002" value="Bandholm" />
+          <option data-dmi-id="9023" value="Marstal/Erikshale" />
+          <option data-dmi-id="9045" value="Assens" />
+          <option data-dmi-id="9007" value="Flyvesandet" />
+          <option data-dmi-id="9003" value="Bogense/Hasmark" />
+          <option data-dmi-id="9019" value="Læsø" />
+          <option data-dmi-id="9001" value="Dueodde" />
+          <option data-dmi-id="9014" value="Kalundborg/Gisseløre" />
+          <option data-dmi-id="9040" value="Sejerøbugten" />
+          <option data-dmi-id="9026" value="Rørvig" />
+          <option data-dmi-id="9049" value="Tisvilde" />
+          <option data-dmi-id="9038" value="Vigen Strandpark" />
+          <option data-dmi-id="9037" value="Ulvshale" />
+          <option data-dmi-id="9027" value="Østersøbadet" />
+          <option data-dmi-id="9047" value="Rødbyhavn" />
+          <option data-dmi-id="9010" value="Hestehovedet" />
+          <option data-dmi-id="9015" value="Karrebæksminde" />
+          <option data-dmi-id="9017" value="Kobæk" />
+          <option data-dmi-id="9020" value="Lohals" />
+          <option data-dmi-id="9005" value="Faaborg/Klinten" />
+          <option data-dmi-id="9034" value="Smørmosen" />
+          <option data-dmi-id="9025" value="Nyborg" />
+          <option data-dmi-id="9016" value="Kerteminde" />
+          <option data-dmi-id="9004" value="Båring Vig" />
+          <option data-dmi-id="9039" value="Vemmingbund" />
+          <option data-dmi-id="9013" value="Juelsminde" />
+          <option data-dmi-id="9028" value="Moesgaard" />
+          <option data-dmi-id="9008" value="Grenå" />
+          <option data-dmi-id="9044" value="Rygaard" />
+          <option data-dmi-id="9043" value="Øster Hurup" />
+          <option data-dmi-id="9030" value="Sæby" />
+          <option data-dmi-id="9033" value="Skagen" />
+          <option data-dmi-id="9021" value="Løkken" />
+          <option data-dmi-id="9031" value="Blokhus" />
+          <option data-dmi-id="9018" value="Vorupør" />
+          <option data-dmi-id="9036" value="Thyborøn" />
+          <option data-dmi-id="9012" value="Nørre Lyngvig" />
+          <option data-dmi-id="9009" value="Henne" />
+          <option data-dmi-id="9006" value="Fanø" />
+          <option data-dmi-id="9029" value="Rømø" />
+        </datalist>
       </div>
     </div>
     <footer class="footer">

@@ -18,8 +18,8 @@ module Byvejr {
 
     gotoPage(pageNumber: number, raiseEvent?: boolean) {
       this.currentPage = pageNumber;
-      this.container.style.transform = 'translateX(-' + pageNumber * 33.3 + '%)';
-      this.container.style['webkitTransform'] = 'translateX(-' + pageNumber * 33.3 + '%)';
+      this.container.style.transform = 'translateX(-' + pageNumber * 25 + '%)';
+      this.container.style['webkitTransform'] = 'translateX(-' + pageNumber * 25 + '%)';
 
       if (raiseEvent) {
         var evt = document.createEvent('Event');

@@ -40,6 +40,8 @@ module Byvejr {
 
       if (pageNumber === 0) {
         model.showRadar();
+      } else if (pageNumber === 3) {
+        model.showBeachWeather();
       }
 
       if (navItem) {
@@ -81,8 +83,10 @@ module Byvejr {
 
     var forecastContainers = document.querySelectorAll<HTMLElement>('.forecast-container.lazy-load');
     for (var i = 0; i < forecastContainers.length; i++) {
-      forecastContainers[i].addEventListener('click', function (e) {
-        (<LazyLoadedForecast> model.forecasts['pollen']).load(model.cityId);
+      var container = forecastContainers[i]
+      container.addEventListener('click', function (e) {
+        var name = container.dataset['name'];
+        (<LazyLoadedForecast> model.forecasts[name]).load(model.cityId);
       }, false);
     }
 
@@ -102,6 +106,8 @@ module Byvejr {
 
       if (hash === '#radar') {
         model.showRadar();
+      } else if (hash === '#strandvejr') {
+        model.showBeachWeather();
       }
 
       if (e.state && e.state.city) {

@@ -94,3 +94,35 @@
     font-size: 5rem;
   }
 }
+
+// Strandvejr
+.water-temp {
+
+    &.loaded img {
+      background-size: contain;
+      background-image: url('http://www.dmi.dk/uploads/tx_dmidatastore/webservice/r/j/e/v/d/strandvejr.png');
+    }
+}
+.water-temp-isoterm {
+  display: block;
+  max-width: 100%;
+}
+
+// Hide forecasts by default
+.beach-forecast, .wave-forecast {
+  display: none;
+
+  &.loaded {
+    display: block;
+  }
+}
+
+.beach-selector {
+  font-size: inherit;
+  border: 1px solid #ACACAC;
+  border-radius: 4px;
+  padding: 0.5em;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.2);
+}

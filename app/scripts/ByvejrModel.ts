@@ -29,8 +29,30 @@ module Byvejr {
         return this.dmiFacade.getPollenForecastImage(id);
       });
 
+      this.forecasts['water-temp'] = new LazyLoadedForecast(document.querySelector<HTMLImageElement>('.water-temp img'), id => {
+        return 'http://www.dmi.dk/fileadmin/Images/VU/badevand_overlay.gif';
+      });
+
+      this.forecasts['beach-forecast'] = new LazyLoadedForecast(document.querySelector<HTMLImageElement>('.beach-forecast img'), id => {
+        return 'http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=' + id + '&tabel=dag1&mode=long';
+      });
+
+      this.forecasts['wave-forecast'] = new LazyLoadedForecast(document.querySelector<HTMLImageElement>('.wave-forecast img'), id => {
+        return 'http://servlet.dmi.dk/byvejr/servlet/byvejr?by='+ id +'&tabel=dag1&param=bolger';
+      });
+
       this.radar = new Dmi.Radar(this.dmiFacade, document.querySelector<HTMLImageElement>('.radar-img-container img'));
       this.byvejrElement = document.querySelector<HTMLElement>('.byvejr');
+
+      // Strandvejr
+      document.querySelector('.beach-selector').addEventListener('change', e => {
+        var beachId = document.querySelector<HTMLInputElement>('.beach-selector').value;
+
+        if (beachId) {
+          (<LazyLoadedForecast>this.forecasts['beach-forecast']).load(parseInt(beachId, 10));
+          (<LazyLoadedForecast>this.forecasts['wave-forecast']).load(parseInt(beachId, 10));
+        }
+      });
     }
 
     displayForecasts(city: any) {
@@ -96,6 +118,11 @@ module Byvejr {
         document.querySelector('.radar').classList.remove('loading');
         this.radar.start();
       });
+    }
+
+    showBeachWeather() {
+      (<LazyLoadedForecast>this.forecasts['water-temp']).load(1);
+      document.querySelector<HTMLImageElement>('.water-temp-isoterm').src = 'images/isoterm.png'; // Lazy load image
     }
 
     setTitle(title: string) {
