@@ -83,9 +83,10 @@ module Byvejr {
 
     var forecastContainers = document.querySelectorAll<HTMLElement>('.forecast-container.lazy-load');
     for (var i = 0; i < forecastContainers.length; i++) {
-      var container = forecastContainers[i]
-      container.addEventListener('click', function (e) {
-        var name = container.dataset['name'];
+      var container = forecastContainers[i];
+      forecastContainers[i].addEventListener('click', function (e) {
+        var target = <HTMLElement> e.currentTarget;
+        var name = target.dataset['name'];
         (<LazyLoadedForecast> model.forecasts[name]).load(model.cityId);
       }, false);
     }
