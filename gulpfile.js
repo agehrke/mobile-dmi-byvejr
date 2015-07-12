@@ -6,6 +6,7 @@ var $ = require('gulp-load-plugins')();
 var ts = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
 var manifest = require('gulp-manifest');
+var sass = require('gulp-sass');
 
 var tsProject = ts.createProject({
   declarationFiles: false,
@@ -29,10 +30,10 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
   return gulp.src('app/styles/main.scss')
     .pipe($.plumber())
-    .pipe($.rubySass({
+    .pipe(sass({
       style: 'expanded',
       precision: 10
-    }))
+    }).on('error', sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 1 version'] }))
     .pipe(gulp.dest('.tmp/styles'));
 });

@@ -16,19 +16,19 @@
     "gulp-if": "^1.2.1",
     "gulp-livereload": "^2.0.0",
     "gulp-load-plugins": "^0.7.1",
+    "gulp-manifest": "0.0.6",
     "gulp-minify-html": "^0.1.6",
     "gulp-plumber": "^0.6.3",
-    "gulp-ruby-sass": "^0.7.1",
+    "gulp-sass": "^2.0.3",
     "gulp-size": "^1.1.0",
+    "gulp-sourcemaps": "*",
+    "gulp-typescript": "*",
     "gulp-uglify": "^1.0.1",
     "gulp-useref": "^1.1.2",
-    "gulp-typescript": "*",
-    "gulp-sourcemaps": "*",
-    "typescript": "^1.5.0-alpha",
     "main-bower-files": "^2.1.0",
     "opn": "^1.0.0",
     "serve-index": "^1.1.4",
     "serve-static": "^1.4.0",
-    "gulp-manifest": "0.0.6"
+    "typescript": "^1.5.0-alpha"
   }
 }
