@@ -30,5 +30,8 @@
     "serve-index": "^1.1.4",
     "serve-static": "^1.4.0",
     "typescript": "^1.5.0-alpha"
+  },
+  "scripts": {
+    "gulp": "gulp"
   }
 }
