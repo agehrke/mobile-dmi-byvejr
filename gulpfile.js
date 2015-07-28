@@ -1,12 +1,13 @@
 /* jshint node:true */
 'use strict';
-// generated on 2015-01-03 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var ts = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
 var manifest = require('gulp-manifest');
 var sass = require('gulp-sass');
+var rev = require("gulp-rev");
+var revReplace = require("gulp-rev-replace");
 
 var tsProject = ts.createProject({
   declarationFiles: false,
@@ -36,44 +37,6 @@ gulp.task('styles', function() {
     }).on('error', sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 1 version'] }))
     .pipe(gulp.dest('.tmp/styles'));
-});
-
-gulp.task('html', ['styles'], function() {
-  var assets = $.useref.assets({ searchPath: '{.tmp,app}' });
-
-  return gulp.src('app/*.html')
-    .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.csso()))
-    .pipe(assets.restore())
-    .pipe($.useref({
-      'appcache': function(content, target, options, alternateSearchPath) {
-        return '<html lang="da" manifest="manifest.appcache">';
-      }
-    }))
-    .pipe($.if('*.html', $.minifyHtml({ conditionals: true, loose: true, quotes: true })))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('manifest', function() {
-  gulp.src(['dist/**/*'])
-    .pipe(manifest({
-      filename: 'manifest.appcache',
-      exclude: ['manifest.appcache', 'googlede996898b309d59f.html', 'robots.txt'],
-      hash: true,
-      preferOnline: true,
-      network: ['*'],
-    }))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('extras', function() {
-  return gulp.src([
-    'app/*.*',
-    'app/images/**/*',
-    'app/styles/img/*',
-    '!app/*.html'
-  ], { base: 'app' }).pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
@@ -118,9 +81,68 @@ gulp.task('watch', ['connect'], function() {
   gulp.watch('app/styles/**/*.scss', ['styles']);
 });
 
-gulp.task('build', ['html', 'extras', 'manifest'], function() {
-  return gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
+
+gulp.task('build:html', ['styles', 'scripts'], function() {
+  var assets = $.useref.assets({ searchPath: '{.tmp,app}' });
+
+  return gulp.src('app/*.html')
+    .pipe(assets)
+    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.css', $.csso()))
+    .pipe(assets.restore())
+    .pipe($.useref({
+      'appcache': function(content, target, options, alternateSearchPath) {
+        return '<html lang="da" manifest="manifest.appcache">';
+      }
+    }))
+    .pipe($.if('*.html', $.minifyHtml({ conditionals: true, loose: true, quotes: true })))
+    .pipe(gulp.dest('dist/.tmp'));
 });
+
+gulp.task('build:extras', function() {
+  return gulp.src([
+    'app/*.*',
+    'app/images/**/*',
+    'app/styles/img/*',
+    '!app/*.html'
+  ], { base: 'app' })
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build', ['build:html', 'build:extras', 'revreplace', 'manifest'], function() {
+    return gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
+});
+
+gulp.task('manifest', ['revreplace'], function() {
+  return gulp.src(['dist/**/*'])
+    .pipe(manifest({
+      filename: 'manifest.appcache',
+      exclude: ['manifest.appcache', 'googlede996898b309d59f.html', 'robots.txt'],
+      hash: true,
+      preferOnline: false,
+      network: ['*'],
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('revision', ['build:html', 'build:extras'], function() {
+  return gulp.src(['dist/.tmp/**/*.css', 'dist/.tmp/**/*.js'])
+    .pipe(rev())
+    .pipe(gulp.dest('dist'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('revreplace', ['revision'], function() {
+  var del = require('del');
+  var manifest = gulp.src("dist/rev-manifest.json");
+
+  return gulp.src('dist/.tmp/*.html')
+    .pipe(revReplace({ manifest: manifest }))
+    .pipe(gulp.dest('dist'));
+});
+
+
 
 gulp.task('default', ['clean'], function() {
   gulp.start('build');

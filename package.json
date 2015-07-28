@@ -25,11 +25,16 @@
     "gulp-typescript": "*",
     "gulp-uglify": "^1.0.1",
     "gulp-useref": "^1.1.2",
+    "gulp-typescript": "*",
+    "gulp-sourcemaps": "*",
     "main-bower-files": "^2.1.0",
     "opn": "^1.0.0",
     "serve-index": "^1.1.4",
     "serve-static": "^1.4.0",
-    "typescript": "^1.5.0-alpha"
+    "typescript": "^1.5.0-alpha",
+    "gulp-rev-replace": "~0.4.2",
+    "gulp-rev": "~5.1.0",
+    "gulp": "3.9.0"
   },
   "scripts": {
     "gulp": "gulp"
