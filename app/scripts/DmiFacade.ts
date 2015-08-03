@@ -30,7 +30,7 @@ module Dmi {
 
   export class Facade {
     searchCitiesByName(query: string): Promise<CitySearchResult[]> {
-      var url = 'http://crossorigin.me/http://www.dmi.dk/Data4DmiDk/getData?type=forecast&term=' + query;
+      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/Data4DmiDk/getData?type=forecast&term=' + query;
       return Byvejr.xhrPromiseGetRequest(url).then(JSON.parse)
         .then(results => {
         if (results[0].id === -1) {
@@ -44,7 +44,7 @@ module Dmi {
     getDetailedCityForecast(id: number): Promise<DetailedCity> {
       if (id < 9999) id = id + 45000000;
 
-      var url = 'http://crossorigin.me/http://www.dmi.dk/Data4DmiDk/getData?by_hour=true&id=' + id + '&country=DK';
+      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/Data4DmiDk/getData?by_hour=true&id=' + id + '&country=DK';
       return Byvejr.xhrPromiseGetRequest(url).then(JSON.parse);
     }
 
@@ -81,12 +81,12 @@ module Dmi {
     }
 
     getRadarImages(): Promise<RadarImage[]> {
-      var url = 'http://crossorigin.me/http://www.dmi.dk/vejr/maalinger/radar-nedboer/?type=30800&tx_dmiafghanistan_afghanistan%5Baction%5D=ajaxTabbedStreamMapDataRequest&tx_dmiafghanistan_afghanistan%5Bcontroller%5D=Afghanistan&cHash=17d64301c5ef7e5f1fe1f6879b21da11&tx_dmiafghanistan_afghanistan[streamId]=3&tx_dmiafghanistan_afghanistan[numberOfImages]=18';
+      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/vejr/maalinger/radar-nedboer/?type=30800&tx_dmiafghanistan_afghanistan%5Baction%5D=ajaxTabbedStreamMapDataRequest&tx_dmiafghanistan_afghanistan%5Bcontroller%5D=Afghanistan&cHash=17d64301c5ef7e5f1fe1f6879b21da11&tx_dmiafghanistan_afghanistan[streamId]=3&tx_dmiafghanistan_afghanistan[numberOfImages]=18';
       return Byvejr.xhrPromiseGetRequest(url).then(JSON.parse);
     }
 
     searchCitiesByPosition(position: Position) {
-      var url = 'http://crossorigin.me/http://www.dmi.dk/Data4DmiDk/getData';
+      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/Data4DmiDk/getData';
       var data = {
         type: 'forecast',
         country: 'DK',
