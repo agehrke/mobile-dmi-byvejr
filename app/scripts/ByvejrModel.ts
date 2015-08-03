@@ -6,7 +6,7 @@
 module Byvejr {
   export class ByvejrModel {
     cityId: number = null;
-    forecasts: { [index: string]: Forecast; } = {};
+    forecasts: { [index: string]: IForecast; } = {};
     dmiFacade: Dmi.Facade;
     radar: Dmi.Radar;
     byvejrElement: HTMLElement;
@@ -15,9 +15,7 @@ module Byvejr {
       this.dmiFacade = dmiFacade;
 
       // Create forecasts
-      this.forecasts['dmi-2'] = new Forecast(document.querySelector<HTMLImageElement>('.two-day-forecast img'), id => {
-        return this.dmiFacade.getForecastImage(id, 'dag1_2');
-      });
+      this.forecasts['dmi-2'] = new DmiChartForecast(document.querySelector('.two-day-forecast .forecast'));
 
       this.forecasts['dmi-9'] = new Forecast(document.querySelector<HTMLImageElement>('.nine-day-forecast img'), id => {
         return this.dmiFacade.getForecastImage(id, 'dag3_9');

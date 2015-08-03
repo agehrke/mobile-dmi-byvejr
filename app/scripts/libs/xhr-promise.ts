@@ -2,7 +2,7 @@
 
 // From: http://www.html5rocks.com/en/tutorials/es6/promises/
 module Byvejr {
-  export function xhrPromiseGetRequest(url) {
+  export function xhrPromiseGetRequest(url) : Promise<any> {
 
     // Return a new promise.
     return new Promise(function (resolve, reject) {

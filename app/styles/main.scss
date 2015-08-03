@@ -1,6 +1,11 @@
 // bower:scss
 // endbower
 
+$font-stack: 'Open Sans', sans-serif;
+$primary-color: #363636;
+$secondary-color: #085297;
+$header-color: #085297;
+
 html {
   font-size: 19px;
 }
@@ -24,8 +29,8 @@ body {
 }
 
 body, button, input, select, textarea {
-  font-family: 'Open Sans', sans-serif;
-  color: #363636;
+  font-family: $font-stack;
+  color: $primary-color;
 }
 
 .larger {
@@ -33,7 +38,7 @@ body, button, input, select, textarea {
 }
 
 a:link, a:visited {
-  color: #085297;
+  color: $secondary-color;
 }
 
 a:hover {
@@ -65,7 +70,7 @@ h3 {
 
 
 header {
-  background-color: #085297;
+  background-color: $header-color;
   color: #FFF;
   text-align: center;
 }
@@ -87,7 +92,7 @@ header.fixed {
 
 .btn {
   border: 1px solid #012B53;
-  background-color: #085297;
+  background-color: $secondary-color;
   font-size: inherit;
   color: #FFF;
   width: 100%;

@@ -61,7 +61,7 @@ module Byvejr {
     });
 
     // Zoomable forecasts
-    var forecasts = document.querySelectorAll('.forecast');
+    var forecasts = document.querySelectorAll('.forecast, .chart');
     for (var i = 0; i < forecasts.length; i++) {
       forecasts[i].addEventListener('click', function () {
         var name = this.parentNode.dataset.name;

@@ -27,12 +27,20 @@
     transition: max-width .5s ease;
   }
 
+  .chart {
+    height: 300px;
+  }
+
   &.scrollable {
     overflow-x: auto;
     overflow-y: hidden;
 
     .forecast {
       max-width: 850px; // Allow full width of forecast image
+    }
+
+    .chart {
+      width: 1000px;
     }
 
     &::after {

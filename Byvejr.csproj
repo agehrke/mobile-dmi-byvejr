@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <TypeScriptToolsVersion>1.4</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,6 +66,7 @@
     <Content Include="app\images\dmi.png" />
     <Content Include="app\index.html" />
     <Content Include="app\redirected.html" />
+    <Content Include="app\scripts\libs\highcharts-custom.js" />
     <Content Include="app\styles\img\bg.png" />
     <Content Include="bower_components\Tocca.js\.gitignore" />
     <Content Include="bower_components\Tocca.js\bind.polyfill.js" />
@@ -109,6 +111,7 @@
     <TypeScriptCompile Include="app\scripts\dom-extensions.d.ts" />
     <TypeScriptCompile Include="app\scripts\Forecast.ts" />
     <TypeScriptCompile Include="app\scripts\libs\es6-promise.d.ts" />
+    <TypeScriptCompile Include="app\scripts\libs\highcharts.d.ts" />
     <TypeScriptCompile Include="app\scripts\libs\xhr-promise.ts" />
     <TypeScriptCompile Include="app\scripts\main.ts" />
     <TypeScriptCompile Include="app\scripts\Navigation.ts" />
