@@ -141,6 +141,8 @@ module Byvejr {
         lookupPositionButtonClicked();
       } else if (window.location.hash === '#soeg') {
         navigation.goto('#soeg');
+      } else if (window.location.hash === '#strandvejr') {
+        navigation.goto('#strandvejr');
       } else {
         var zipCode = parseInt(window.location.hash.replace('#', ''), 10);
         if (zipCode) {
