@@ -1,0 +1,14 @@
+{
+    "start_url": "https://www.vejr.info/",
+    "short_name": "Vejr.info",
+    "icons": [
+      {
+        "src": "images/logo.png",
+       "sizes": "201x290",
+       "type": "image/png"
+      }
+    ],
+    "display": "fullscreen",
+    "orientation": "any",
+    "name": "Vejr.info"
+}

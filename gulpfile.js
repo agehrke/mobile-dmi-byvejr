@@ -90,11 +90,7 @@ gulp.task('build:html', ['styles', 'scripts'], function() {
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
-    .pipe($.useref({
-      'appcache': function(content, target, options, alternateSearchPath) {
-        return '<html lang="da" manifest="manifest.appcache">';
-      }
-    }))
+    .pipe($.useref())
     .pipe($.if('*.html', $.minifyHtml({ conditionals: true, loose: true, quotes: true })))
     .pipe(gulp.dest('dist/.tmp'));
 });
