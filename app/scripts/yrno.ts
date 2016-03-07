@@ -61,7 +61,11 @@ module YrNo {
   }
 
   function getHourlyForecastImageUrlByName(name: string) {
-    return 'http://www.yr.no/place/Denmark/' + name + '/meteogram.png';
+    return corsProxy('http://www.yr.no/place/Denmark/' + name + '/meteogram.png');
+  }
+  
+  function corsProxy(url: string) {
+    return 'https://vejr.info/proxy.php/' + url;
   }
 
   export function getHourlyForecastImageUrl(zipCode: number | string) {

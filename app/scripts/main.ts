@@ -16,7 +16,7 @@ module Byvejr {
 
     // Redirect to vejr.info if using Github domain
     if (window.location.host === 'agehrke.github.io') {
-      window.location.replace('http://vejr.info/redirected.html');
+      window.location.replace('https://vejr.info/redirected.html');
     }
 
     // Create model and DMI facade

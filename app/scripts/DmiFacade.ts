@@ -30,7 +30,7 @@ module Dmi {
 
   export class Facade {
     searchCitiesByName(query: string): Promise<CitySearchResult[]> {
-      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/Data4DmiDk/getData?type=forecast&term=' + query;
+      var url = this.corsProxy('http://www.dmi.dk/Data4DmiDk/getData?type=forecast&term=' + query);
       return Byvejr.xhrPromiseGetRequest(url).then(JSON.parse)
         .then(results => {
         if (results[0].id === -1) {
@@ -44,7 +44,7 @@ module Dmi {
     getDetailedCityForecast(id: number): Promise<DetailedCity> {
       if (id < 9999) id = id + 45000000;
 
-      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/Data4DmiDk/getData?by_hour=true&id=' + id + '&country=DK';
+      var url = this.corsProxy('http://www.dmi.dk/Data4DmiDk/getData?by_hour=true&id=' + id + '&country=DK');
       return Byvejr.xhrPromiseGetRequest(url).then(JSON.parse);
     }
 
@@ -53,15 +53,15 @@ module Dmi {
       id = this.normalizeCityId(id);
 
       if (id < 9999) {
-        if (type === 'dag1_2') return 'http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=' + id + '&mode=long';
-        else return 'http://servlet.dmi.dk/byvejr/servlet/byvejr?by=' + id + '&tabel=dag3_9';
+        if (type === 'dag1_2') return this.corsProxy('http://servlet.dmi.dk/byvejr/servlet/byvejr_dag1?by=' + id + '&mode=long&eps=true');
+        else return this.corsProxy('http://servlet.dmi.dk/byvejr/servlet/byvejr?by=' + id + '&tabel=dag3_9');
       } else {
-        return 'http://servlet.dmi.dk/byvejr/servlet/world_image?city=' + id + '&mode=' + type;
+        return this.corsProxy('http://servlet.dmi.dk/byvejr/servlet/world_image?city=' + id + '&mode=' + type);
       }
     }
 
     getPollenForecastImage(id: number | string) {
-      return 'http://servlet.dmi.dk/byvejr/servlet/pollen_dag1?by=' + id;
+      return this.corsProxy('http://servlet.dmi.dk/byvejr/servlet/pollen_dag1?by=' + id);
     }
 
     normalizeCityId(id: number | string) {
@@ -81,12 +81,12 @@ module Dmi {
     }
 
     getRadarImages(): Promise<RadarImage[]> {
-      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/vejr/maalinger/radar-nedboer/?type=30800&tx_dmiafghanistan_afghanistan%5Baction%5D=ajaxTabbedStreamMapDataRequest&tx_dmiafghanistan_afghanistan%5Bcontroller%5D=Afghanistan&cHash=17d64301c5ef7e5f1fe1f6879b21da11&tx_dmiafghanistan_afghanistan[streamId]=3&tx_dmiafghanistan_afghanistan[numberOfImages]=18';
+      var url = this.corsProxy('http://www.dmi.dk/vejr/maalinger/radar-nedboer/?type=30800&tx_dmiafghanistan_afghanistan%5Baction%5D=ajaxTabbedStreamMapDataRequest&tx_dmiafghanistan_afghanistan%5Bcontroller%5D=Afghanistan&cHash=17d64301c5ef7e5f1fe1f6879b21da11&tx_dmiafghanistan_afghanistan[streamId]=3&tx_dmiafghanistan_afghanistan[numberOfImages]=18');
       return Byvejr.xhrPromiseGetRequest(url).then(JSON.parse);
     }
 
     searchCitiesByPosition(position: Position) {
-      var url = 'http://cors-anywhere.herokuapp.com/http://www.dmi.dk/Data4DmiDk/getData';
+      var url = this.corsProxy('http://www.dmi.dk/Data4DmiDk/getData');
       var data = {
         type: 'forecast',
         country: 'DK',
@@ -136,6 +136,10 @@ module Dmi {
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       var d = R * c; // Distance in km
       return d;
+    }
+    
+    corsProxy(url: string) {
+      return 'https://vejr.info/proxy.php/' + url;
     }
   }
 }

@@ -2,6 +2,7 @@
 /// <reference path="./DmiFacade.ts"/>
 /// <reference path="./Radar.ts"/>
 /// <reference path="./Forecast.ts"/>
+/// <reference path="./dom-extensions.d.ts" />
 
 module Byvejr {
   export class ByvejrModel {

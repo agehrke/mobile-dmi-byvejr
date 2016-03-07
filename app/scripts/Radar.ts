@@ -33,7 +33,7 @@ module Dmi {
 
       // Loop through images using setInterval
       this.interval = window.setInterval(() => {
-        this.imgElement.src = 'http://www.dmi.dk' + this.images[this.currentImageIndex].src;
+        this.imgElement.src = this.dmiFacade.corsProxy('http://www.dmi.dk' + this.images[this.currentImageIndex].src);
         this.currentImageIndex++;
         if (this.currentImageIndex >= this.images.length) {
           this.currentImageIndex = 0;
