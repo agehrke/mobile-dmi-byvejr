@@ -28,17 +28,27 @@ module Dmi {
     country: string;
   }
 
+  export interface PollenCityForecast {
+    city: string;
+    pollen: PollenForecast[];
+  }
+
+  export interface PollenForecast {
+    name: string;
+    amount: string;
+  }
+
   export class Facade {
     searchCitiesByName(query: string): Promise<CitySearchResult[]> {
       var url = this.corsProxy('http://www.dmi.dk/Data4DmiDk/getData?type=forecast&term=' + query);
       return Byvejr.xhrPromiseGetRequest(url).then(JSON.parse)
         .then(results => {
-        if (results[0].id === -1) {
-          return []; // Return empty result
-        } else {
-          return results;
-        }
-      });
+          if (results[0].id === -1) {
+            return []; // Return empty result
+          } else {
+            return results;
+          }
+        });
     }
 
     getDetailedCityForecast(id: number): Promise<DetailedCity> {
@@ -106,18 +116,49 @@ module Dmi {
 
       return Byvejr.xhrPromiseGetRequest(url + '?' + queryString).then(JSON.parse)
         .then((cities: DetailedCity[]) => {
-        // Calc distance for each city
-        cities.forEach(city => {
-          city.distance = this.getDistanceFromLatLonInKm(position.coords.latitude, position.coords.longitude, city.latitude, city.longitude);
-        });
+          // Calc distance for each city
+          cities.forEach(city => {
+            city.distance = this.getDistanceFromLatLonInKm(position.coords.latitude, position.coords.longitude, city.latitude, city.longitude);
+          });
 
-        // Sort by nearest
-        cities.sort(function (a, b) {
-          return a.distance - b.distance;
-        });
+          // Sort by nearest
+          cities.sort(function (a, b) {
+            return a.distance - b.distance;
+          });
 
-        return cities;
-      });
+          return cities;
+        });
+    }
+
+    getPollen(): Promise<PollenCityForecast[]> {
+      return Byvejr.xhrPromiseGetRequest(this.corsProxy('http://www.dmi.dk/vejr/services/pollen-rss/'))
+        .then((response: Document) => {
+          var items = response.getElementsByTagName('item');
+
+          // Argh - filter/map would have been so cleaner
+          let pollenResults: PollenCityForecast[] = [];
+          for (let i = 0; i < items.length; i++) {
+            var titleElement = items[i].getElementsByTagName('title')[0];
+            var descriptionElement = items[i].getElementsByTagName('description')[0];
+            if (!titleElement) continue;
+            if (!descriptionElement) continue;
+
+            // Parse pollen from description - example: Birk: 81; Bynke: -; El: -; Elm: 2; Græs: -; Hassel: -; Alternaria: -; Cladosporium: -;
+            var pollen = descriptionElement.textContent.split(';').map(val => {
+              var regexMatch = val.match('/^([^:]+):(.*)$/i');
+              if (regexMatch) {
+                return <PollenForecast> { name: regexMatch[1].trim(), amount: regexMatch[2].trim() };
+              }
+            });
+
+            pollenResults.push({
+              city: titleElement.textContent.trim(),
+              pollen: pollen
+            });
+          }
+
+          return pollenResults;
+        });
     }
 
     // From: http://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-latitude-longitude-points
@@ -137,9 +178,9 @@ module Dmi {
       var d = R * c; // Distance in km
       return d;
     }
-    
+
     corsProxy(url: string) {
-      return 'https://vejr.info/proxy.php/' + url;
+      return 'https://www.vejr.info/proxy.php/' + url;
     }
   }
 }
